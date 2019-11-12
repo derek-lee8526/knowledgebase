@@ -1,0 +1,17 @@
+{{#each messages}}
+    <div class='msgContainer'>
+        <div class='msgImgContainer'>
+            <img src='{{ this.imageURL }}' />
+        </div>
+        <div class='msgBodyContainer'>
+            <div class='msgNameContainer'>
+                <span> {{ this.firstName }} {{ this.lastName}} </span>
+                <span> {{ this.messageTime}} </span>
+            </div>
+            <div class='msgTextContainer'>
+                <p> {{ this.message }} </p>
+            </div>
+        </div>
+
+    </div>
+{{/each}}

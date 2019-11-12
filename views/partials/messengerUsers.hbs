@@ -1,6 +1,6 @@
 {{#each users}}
     
-    <div class='usersContainer'>
+    <div class='usersContainer' onclick="getMessage({{ this.id }})">
         
         <div class='leftUserContainer'>
             <img src='{{ this.imageURL }}' />

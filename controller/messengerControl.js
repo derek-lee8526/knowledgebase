@@ -1,8 +1,8 @@
 let messengereModel = require('../model/messengerModel');
 
 
-exports.getAllMessenger = (req, res, next) => {
-    let getData = messengereModel.getAllMsgData();
+exports.getUserList = (req, res, next) => {
+    let getData = messengereModel.getUserList();
     console.log(getData);
     // getData.then(([data, metaData]) => {
     //     res.render('messengerUsers', { data: data, messengerCSS: true })
@@ -15,4 +15,11 @@ exports.getAllMessenger = (req, res, next) => {
         res.render('messenger', { users: passingData, messengerCSS: true })
     })
 
+}
+
+exports.getMessages = (req, res, next) => {
+    console.log(req.query.id);
+    let msgData = messengereModel.getMessage(req.query.id);
+
+    res.send(JSON.stringify(msgData));
 }
