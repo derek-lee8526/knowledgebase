@@ -1,0 +1,19 @@
+{{#each users}}
+    
+    <div class='usersContainer'>
+        
+        <div class='leftUserContainer'>
+            <img src='{{ this.imageURL }}' />
+        </div>
+        <div class='midUserContainer'>
+            <div class='textContainer'>
+                <p> {{ this.firstName}} {{ this.lastName }}</p>
+                <p> {{ this.lastMsg }} </p>
+            </div>
+
+        </div>
+        <div class='rightUserContainer'>
+            <span> {{ this.lastMsgDate }} </span>
+        </div>
+    </div>
+{{/each}}

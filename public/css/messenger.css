@@ -1,0 +1,65 @@
+#messengerContainer {
+    background-color: blue;
+    width: 100%;
+    height: 100%;
+}
+
+#userContainer {
+    background-color: gray;
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+
+.messageContainer {
+    background-color: white;
+    width: 70%;
+    height: 100%;
+    float: right;
+}
+
+.message {}
+
+.user {}
+
+.leftUserContainer img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 2px skyblue solid;
+}
+
+.leftUserContainer {
+    float: left;
+    margin-right: 20px;
+    width: 30%;
+}
+
+.midUserContainer {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: 50%;
+}
+
+.textContainer {
+    width: 40%;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.rightUserContainer {
+    float: right;
+    width: 20%;
+}
+
+.usersContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
