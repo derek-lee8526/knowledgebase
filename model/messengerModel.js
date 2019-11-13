@@ -15,6 +15,20 @@ function getMessage(id) {
             messageTime: 'Sept 19th',
             imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
         },
+        {
+            firstName: 'bran',
+            lastName: 'Lee',
+            message: 'Test',
+            messageTime: 'Sept 19th',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
+        },
+        {
+            firstName: 'bran2',
+            lastName: 'Lee',
+            message: 'Test',
+            messageTime: 'Sept 19th',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
+        },
 
     ];
     return messages;
@@ -36,15 +50,15 @@ function getUserList() {
             imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg'
 
         },
-        // {
-        //     id: 2,
-        //     firstName: 'bran2',
-        //     lastName: 'Lee',
-        //     lastMsg: 'Test',
-        //     lastMsgDate: 'Sept 19th',
-        //     imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg'
+        {
+            id: 2,
+            firstName: 'bran2',
+            lastName: 'Lee',
+            lastMsg: 'Test',
+            lastMsgDate: 'Sept 19th',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg'
 
-        // },
+        },
     ];
 
     return data;

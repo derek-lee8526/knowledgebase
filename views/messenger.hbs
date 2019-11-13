@@ -1,6 +1,8 @@
 <div id="messengerContainer">
     <div id="userContainer">
-        {{>messengerUsers }}
+        {{#each users}}
+        {{>messengerUsers this}}
+        {{/each}}
     </div>
     <div id="messageContainer">
 

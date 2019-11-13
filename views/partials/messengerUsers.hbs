@@ -1,19 +1,18 @@
-{{#each users}}
+
     
-    <div class='usersContainer' onclick="getMessage({{ this.id }})">
+    <div class='usersContainer' onclick="getMessage({{ id }})">
         
         <div class='leftUserContainer'>
-            <img src='{{ this.imageURL }}' />
+            <img src='{{ imageURL }}' />
         </div>
         <div class='midUserContainer'>
             <div class='textContainer'>
-                <p> {{ this.firstName}} {{ this.lastName }}</p>
-                <p> {{ this.lastMsg }} </p>
+                <p> {{ firstName}} {{ lastName }}</p>
+                <p> {{ lastMsg }} </p>
             </div>
 
         </div>
         <div class='rightUserContainer'>
-            <span> {{ this.lastMsgDate }} </span>
+            <span> {{ lastMsgDate }} </span>
         </div>
     </div>
-{{/each}}

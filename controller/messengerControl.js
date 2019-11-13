@@ -8,12 +8,13 @@ exports.getUserList = (req, res, next) => {
     //     res.render('messengerUsers', { data: data, messengerCSS: true })
     // })
 
-    getData.forEach((data) => {
-        console.log(data);
-        let passingData = [];
-        passingData.push(data);
-        res.render('messenger', { users: passingData, messengerCSS: true })
-    })
+    // getData.forEach((data) => {
+    //     console.log(data);
+    //     let passingData = [];
+    //     passingData.push(data);
+    //     res.render('messenger', { users: passingData, messengerCSS: true })
+    // })
+    res.render('messenger', { users: getData, messengerCSS: true })
 
 }
 
