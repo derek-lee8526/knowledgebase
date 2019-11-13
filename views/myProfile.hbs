@@ -1,0 +1,46 @@
+
+    
+    <div class='userProfileContainer'>
+        
+        <div class='userProfileImgContainer'>
+            <img src='{{ imageURL }}' />
+        </div>
+        <div class='userProfileBasicInfoContainer'>
+            <div class='textContainer'>
+                <p> {{ firstName }} {{ lastName }}</p>
+                <p> {{ description }} </p>
+            </div>
+
+        </div>
+        <div class='userProfileSocialInfoContainer'>
+            <p> {{ post }}</p>
+            <p> {{ message }}</p>
+            <p> {{ like }}</p>
+        </div>
+        <div class='userProfileEditContainer'>
+            <p> edit profile </p>
+        </div>
+    </div>
+    <div>
+        <div class='allPosts'>
+        
+        </div>
+        {{#each post}}
+            <div class='postContainer'>
+                <div class='postImgContainer'>
+                    <img src='{{ this.imageURL }}' />
+                </div>
+                <div class='postContentContainer'>
+                    <div class='postTitleContainer'>
+                        <p>  postTitle   category  </p>
+                    </div>
+                    <div class='postDescContainer'>
+                        <span>  postDesc </span>
+                    </div>
+                    <div class='postDetailsContainer'>
+                        <p>  date   replies </p>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
