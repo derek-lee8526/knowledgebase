@@ -29,7 +29,7 @@ let Routes = require('./router/router');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-    res.render('home', { pageTitle: 'KnowledgeBase', heading: 'Welcome to Knowledge' });
+    res.render('home', { pageTitle: 'KnowledgeBase', heading: 'Welcome to Knowledgebase', homeCSS: true });
 });
 
 app.use(Routes);
