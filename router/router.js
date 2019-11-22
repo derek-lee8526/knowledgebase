@@ -7,4 +7,5 @@ router.get('/messenger', messengerController.getUserList)
 router.get('/getMessage/:id', messengerController.getMessages)
 router.post('/createUser', loginController.createUser)
 router.post('/signInUser', loginController.signInUser)
+router.post('/signOutUser', loginController.signOutUser)
 module.exports = router;

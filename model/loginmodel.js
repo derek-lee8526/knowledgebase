@@ -24,17 +24,34 @@ function login(data) {
     firebase.auth().signInWithEmailAndPassword("leeyongl5263@gmail.com", "12341234")
         .then((user) => {
             console.log("user:", user.user.uid);
+            return true;
         })
         .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
             // ...
+            return false;
         });
+}
+
+function signout() {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        return true;
+    }).catch(function(error) {
+        // An error happened.
+        return false;
+    });
+
+
 }
 
 module.exports = {
     createUser: addUser,
-    signin: login
+    signin: login,
+    signout: signout
 
 }
