@@ -14,6 +14,7 @@ const pool = mysql.createPool({
     user: 'brandon',
     database: 'knowledgebase',
     password: 'brandon',
+    connectTimeout: 30000
 });
 
 pool.query('SHOW TABLES LIKE "message"', (error, results) => {

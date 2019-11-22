@@ -3,6 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 let path = require('path');
 let  db  =  require('./utils/database');
+let firebase = require('./firebase');
 const expressHbs = require('express-handlebars');
 const PORT = process.env.PORT || 3000;
 

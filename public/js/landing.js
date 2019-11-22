@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 
-    sendButtonTrigger();
+    signInButton();
 }, false);
 
 
@@ -66,13 +66,27 @@ async function getMessage(id) {
     })
 }
 
-function sendButtonTrigger() {
+function signInButton() {
 
-    let sendButton = document.getElementById('sendButton');
-    sendButton.addEventListener("click", function() {
-        let text = document.getElementById('messageBox').value;
+    let sendButton = document.getElementById('loginSubmit');
+    sendButton.addEventListener("click", async function() {
+        console.log("adfsasadf");
+        let id = document.getElementById('loginEmail').nodeValue;
+        let password = document.getElementById('loginPassword').nodeValue;
+        let user = {
+            id: id,
+            password: password
+        }
+        const response = await fetch(`/signInUser`, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((data) => {
+            console.log(data);
+        });
 
-        console.log(text);
     });
 
 }

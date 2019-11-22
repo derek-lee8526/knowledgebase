@@ -24,3 +24,11 @@ exports.getMessages = (req, res, next) => {
 
     res.send(JSON.stringify(msgData));
 }
+
+
+exports.sendMessage = (req, res, next) => {
+    console.log(req.query.data);
+    let data = req.query.data;
+    let msgData = messengereModel.sendMessage(data);
+    console.log(msgData);
+}

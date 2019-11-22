@@ -64,10 +64,19 @@ function getUserList() {
     return data;
 }
 
+function sendMessage(data) {
+
+
+    let result = db.execute(
+        'INSERT INTO table_name (id, sender, receiver, body, messageTime) VALUES (1, test1, test2, "testbody", "sept 1st 2019");');
+
+    return result;
+}
 
 module.exports = {
     send: sendMessage,
     getMessage: getMessage,
     getList: getList,
-    getUserList: getUserList
+    getUserList: getUserList,
+    sendMessage: sendMessage
 }
