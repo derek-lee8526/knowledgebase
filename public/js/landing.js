@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-
+    createUser()
     signInButton();
 }, false);
 
@@ -89,4 +89,34 @@ function signInButton() {
 
     });
 
+}
+
+
+function createUser() {
+    let create = document.getElementById('submit');
+    create.addEventListener("click", async function() {
+        let first_name = document.getElementById('fname').value
+        let last_name = document.getElementById('lname').value
+        let email = document.getElementById('email').value
+        let password = document.getElementById('password').value
+
+        let user = {
+            fname: first_name,
+            lname: last_name,
+            email: email,
+            password: password
+        }
+        const response = await fetch (`/createuser` , {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((data) => {
+            console.log(data)
+        })
+    })
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    })
 }

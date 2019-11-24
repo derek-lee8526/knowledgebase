@@ -1,18 +1,21 @@
 let firebase = require('firebase')
+let db = require('../utils/database')
     //add user to the database
 function addUser(data) {
-    console.log("============= CREATE USER ===============");
-    firebase.auth().createUserWithEmailAndPassword('leeyongl52633@gmail.com', '12341234')
-        .then((user) => {
-            console.log('user:', user.user.uid);
-            console.log('additionalinfo:', user.additionalUserInfo);
-        })
-        .catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
-        });
+    let sql = "Insert into USERS (first_name, last_name, email, password) values ('" + data.fname + "','" + data.lname + "','" + data.email + "','" + data.password + "')";
+    db.execute(sql)
+    // console.log("============= CREATE USER ===============");
+    // firebase.auth().createUserWithEmailAndPassword('leeyongl52633@gmail.com', '12341234')
+    //     .then((user) => {
+    //         console.log('user:', user.user.uid);
+    //         console.log('additionalinfo:', user.additionalUserInfo);
+    //     })
+    //     .catch(function(error) {
+    //         // Handle Errors here.
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         // ...
+    //     });
 }
 
 //add data to user's profile
