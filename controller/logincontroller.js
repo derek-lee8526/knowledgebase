@@ -1,9 +1,16 @@
-let loginModel = require('../model/loginModel');
+let loginmodel = require('../model/loginmodel');
 
 
 exports.createUser = (req, res, next) => {
-    let addUser = loginModel.createUser();
-
+    // let addUser = loginModel.createUser();
+    console.log(req.body)
+    let user = {
+        fname: req.body.fname,
+        lname: req.body.lname,
+        email: req.body.email,
+        password: req.body.password
+    }
+    loginmodel.createUser(user)
 }
 
 exports.signInUser = (req, res, next) => {
