@@ -6,7 +6,9 @@
 }
 
 #logo {
-    height: 7%
+    height: 7%;
+    margin: none;
+
 }
 
 #loginSubmit {
@@ -14,8 +16,8 @@
     color: white;
     border: none;
     width: 7%;
-    height: 4%;
-    margin-top: 25px;
+    padding: 5px;
+    margin-top: 33px;
 }
 
 #landingPicture {
@@ -27,7 +29,7 @@ input::placeholder {
     padding-left: 3%
 }
 
-div > img {
+#landingimg {
     height: 400px;
     width: 400px;
     margin: 16% 0 0 16%
@@ -51,6 +53,11 @@ div > p {
 #fname {
     margin-right:4%;
     margin-left: 25%;
+    width: 24%;
+}
+
+#lname {
+    width: 24.5%;
 }
 
 .registration {
