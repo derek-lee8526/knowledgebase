@@ -1,0 +1,13 @@
+#logo {
+    height: 7%;
+}
+
+#div > p {
+    width: 50%;
+    float: left;
+}
+
+#regForm {
+    width: 50%;
+    float: right;
+}

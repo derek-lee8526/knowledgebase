@@ -33,6 +33,10 @@ app.get('/', function(req, res) {
     res.render('home', { pageTitle: 'KnowledgeBase', heading: 'Welcome to Knowledgebase', homeCSS: true });
 });
 
+app.get('/completeregistration', function(req, res) {
+    res.render('completeregistration', {registrationCSS: true})
+})
+
 app.use(Routes);
 
 app.listen(PORT, () => console.log('Server ready'))
