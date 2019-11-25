@@ -54,6 +54,7 @@ function signout() {
 
 module.exports = {
     createUser: addUser,
+    updateUser: addProfile,
     signin: login,
     signout: signout
 

@@ -1,5 +1,8 @@
-CREATE TABLE IF NOT EXISTS `USERS` (
-    `ID` INT AUTO_INCREMENT,
+CREATE SCHEMA IF NOT EXISTS `knowledgebase` DEFAULT CHARACTER SET utf8 ;
+USE `knowledgebase`;
+
+CREATE TABLE IF NOT EXISTS `knowledgebase`, `Users` (
+    `ID` INT NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(255) NOT NULL,
     `last_name` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,

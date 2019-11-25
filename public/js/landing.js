@@ -118,5 +118,6 @@ function createUser() {
     })
     document.getElementById('signupForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        window.location.href = '/completeregistration'
     })
 }

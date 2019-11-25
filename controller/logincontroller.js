@@ -13,12 +13,18 @@ exports.createUser = (req, res, next) => {
     loginmodel.createUser(user)
 }
 
+exports.updateUser = (req, res) => {
+
+
+    loginmodel.updateUser(userData)   
+}
+
 exports.signInUser = (req, res, next) => {
     let user = req.body.user
-    let signInUser = loginModel.signin(user);
+    let signInUser = loginmodel.signin(user);
     return signInUser;
 }
 
 exports.signOutUser = (req, res, next) => {
-    return loginModel.signout();
+    return loginmodel.signout();
 }
