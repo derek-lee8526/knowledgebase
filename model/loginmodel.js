@@ -20,7 +20,18 @@ function addUser(data) {
 
 //add data to user's profile
 function addProfile(data) {
-
+    let userUpdate = {
+        img: data.img,
+        desc: data.desc,
+        country: data.country,
+        dob: data.dob
+        
+    }
+    db.execute("Update users SET imageurl = ?, description = ?, country = ?, dateofbirth = ?", [userUpdate.img, userUpdate.desc, userUpdate.country,userUpdate.dob], function(err,result){
+        if(err) {
+            return console.log(err)
+        }
+    })
 }
 
 function login(data) {
