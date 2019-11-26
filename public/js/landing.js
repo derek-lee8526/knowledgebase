@@ -1,3 +1,5 @@
+// import { updateUser } from "../../controller/logincontroller";
+
 document.addEventListener('DOMContentLoaded', function() {
 
     createUser()

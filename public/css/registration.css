@@ -2,12 +2,35 @@
     height: 7%;
 }
 
-#div > p {
-    width: 50%;
+div > p {
+    width: 19%;
     float: left;
+    text-align: center;
+    font-size: 33pt;
+    font-weight: bold;
+    margin-left: 15%;
 }
 
 #regForm {
     width: 50%;
     float: right;
+    margin-top: 3%;
+}
+
+.updateForm {
+    width: 53%;
+    margin: 2% 0 0 -13%
+}
+
+#img {
+    width: 53%;
+    margin-left: -13%;
+}
+
+#completeregistration {
+    font-family: 'Overlock', cursive;
+    border: 2px solid #00bfff;
+    background: white;
+    color: #00bfff;
+    height: 35px;
 }
