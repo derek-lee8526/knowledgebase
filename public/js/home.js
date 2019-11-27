@@ -28,6 +28,6 @@ function updateUser() {
     })
     document.getElementById('registration').addEventListener('submit', function(e) {
         e.preventDefault();
-        // window.location.href = '/completeregistration'
+        window.location.href = '/messenger'
     })
 }
