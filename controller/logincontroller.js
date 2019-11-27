@@ -22,12 +22,13 @@ exports.updateUser = (req, res) => {
         dob: req.body.dob
     }
 
-    // loginmodel.updateUser(userData)   
+    loginmodel.updateUser(userData)   
 }
 
 exports.signInUser = (req, res, next) => {
     let user = req.body.user
     let signInUser = loginmodel.signin(user);
+    // res.render('landing')
     return signInUser;
 }
 
