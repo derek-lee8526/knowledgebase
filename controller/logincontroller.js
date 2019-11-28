@@ -2,7 +2,7 @@ let loginmodel = require('../model/loginmodel');
 
 
 exports.createUser = (req, res, next) => {
-    let addUser = loginModel.createUser();
+   
     console.log(req.body)
     let user = {
         fname: req.body.fname,
@@ -10,11 +10,13 @@ exports.createUser = (req, res, next) => {
         email: req.body.email,
         password: req.body.password
     }
+    // let addUser = loginmodel.addUser(user);
     // loginmodel.createUser(user)
 }
 
 exports.updateUser = (req, res) => {
-    // console.log(req.body)
+    console.log('hello')
+    console.log(req.body)
     let userData = {
         fname: req.body.fname,
         lname: req.body.lname,
@@ -26,7 +28,8 @@ exports.updateUser = (req, res) => {
         dob: req.body.dob
     }
     // console.log(userData)
-    loginmodel.addUser(userData)   
+    let addUser = loginmodel.addUser(userData);
+    // loginmodel.addUser(userData)   
 }
 
 exports.signInUser = (req, res, next) => {
