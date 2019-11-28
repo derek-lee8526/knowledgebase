@@ -2,11 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     sendButtonTrigger();
+
 }, false);
 
+let receiver = null;
 
 async function getMessage(id) {
     console.log(id);
+    receiver = id;
+    // let userItem = document.getElementById(id);
+    // userItem.style.backgroundColor = "lightgray";
     const response = await fetch(`/getMessage/${id}`, {
         method: 'GET',
         // body: {name: nameInput.value, about: aboutInput.value, imgURL: imgInput.value},
@@ -74,5 +79,29 @@ function sendButtonTrigger() {
 
         console.log(text);
     });
+
+}
+
+async function sendMessage(id) {
+    let subject = document.getElementById('sendMessageSubject');
+    let body = document.getElementById('sendMessagePageTextArea');
+    if (receiver) {
+        const response = await fetch(`/sendMessage/${receiver}`, {
+            method: 'POST',
+            body: {
+                subject: subject.value,
+                body: body.value,
+                date: new Date(),
+                receiver: id
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((data) => {
+            console.log(data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
 }

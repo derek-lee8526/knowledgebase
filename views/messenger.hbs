@@ -4,10 +4,19 @@
         {{>messengerUsers this}}
         {{/each}}
     </div>
-    <div id="messageContainer">
-        <div>
-            <input type='text' id="messageBox" />
-            <button id="sendButton"> Send</button>
+    <div id="messageBiggerContainer">
+        <div id="messageContainer">
+
+        </div>
+        <div id="sendContainer">
+            <div>
+                <textarea type='text' placeholder="Write a message..." id="messageBox"></textarea>
+            </div>
+            <div id ="sendButtonContainer">
+                <button id="sendButton"> Send</button>
+            </div>
+            
         </div>
     </div>
+    
 </div>

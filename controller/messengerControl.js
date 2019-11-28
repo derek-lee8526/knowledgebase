@@ -32,3 +32,10 @@ exports.sendMessage = (req, res, next) => {
     let msgData = messengereModel.sendMessage(data);
     console.log(msgData);
 }
+
+exports.sendMessagePage = (req, res, next) => {
+
+    let receiverData = messengereModel.sendMessagePageData(req.query.id);
+
+    res.render("sendMessage", { receiver: receiverData, sendMessageCSS: true })
+}

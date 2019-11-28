@@ -8,6 +8,7 @@ function sendMessage(id) {
 // Get messages with user ID
 function getMessage(id) {
     console.log(id);
+    let sql = `SELECT * FROM message WHERE sender="${id}" AND receiver="${id}"`;
     let messages = [{
             firstName: 'bran',
             lastName: 'Lee',
@@ -73,10 +74,24 @@ function sendMessage(data) {
     return result;
 }
 
+function sendMessagePageData(id) {
+    let user = {
+        id: 2,
+        firstName: 'bran2',
+        lastName: 'Lee',
+        lastMsg: 'Test',
+        lastMsgDate: 'Sept 19th',
+        imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg'
+
+    };
+    return user;
+}
+
 module.exports = {
     send: sendMessage,
     getMessage: getMessage,
     getList: getList,
     getUserList: getUserList,
-    sendMessage: sendMessage
+    sendMessage: sendMessage,
+    sendMessagePageData: sendMessagePageData
 }

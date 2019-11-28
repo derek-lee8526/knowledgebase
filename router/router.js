@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/messenger', messengerController.getUserList)
 router.get('/getMessage/:id', messengerController.getMessages)
+router.get('/sendMessage/:id', messengerController.sendMessagePage)
 router.get('/home', loginController.home)
 router.post('/createuser', loginController.createUser)
 router.post('/signInUser', loginController.signInUser)
