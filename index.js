@@ -3,6 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 let path = require('path');
 let  db  =  require('./utils/database');
+let firebase = require('./firebase');
 const expressHbs = require('express-handlebars');
 const PORT = process.env.PORT || 3000;
 
@@ -29,8 +30,12 @@ let Routes = require('./router/router');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-    res.render('home', { pageTitle: 'KnowledgeBase', heading: 'Welcome to Knowledge' });
+    res.render('home', { pageTitle: 'KnowledgeBase', heading: 'Welcome to Knowledgebase', homeCSS: true });
 });
+
+app.get('/completeregistration', function(req, res) {
+    res.render('completeregistration', {registrationCSS: true})
+})
 
 app.use(Routes);
 

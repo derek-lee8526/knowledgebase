@@ -1,17 +1,14 @@
+// import { updateUser } from "../../controller/logincontroller";
+
 document.addEventListener('DOMContentLoaded', function() {
 
-
-    sendButtonTrigger();
-
+    // createUser()
+    signInButton();
 }, false);
-
-let receiver = null;
+var userData = []
 
 async function getMessage(id) {
     console.log(id);
-    receiver = id;
-    // let userItem = document.getElementById(id);
-    // userItem.style.backgroundColor = "lightgray";
     const response = await fetch(`/getMessage/${id}`, {
         method: 'GET',
         // body: {name: nameInput.value, about: aboutInput.value, imgURL: imgInput.value},
@@ -71,37 +68,69 @@ async function getMessage(id) {
     })
 }
 
-function sendButtonTrigger() {
+function signInButton() {
 
-    let sendButton = document.getElementById('sendButton');
-    sendButton.addEventListener("click", function() {
-        let text = document.getElementById('messageBox').value;
-
-        console.log(text);
-    });
-
-}
-
-async function sendMessage(id) {
-    let subject = document.getElementById('sendMessageSubject');
-    let body = document.getElementById('sendMessagePageTextArea');
-    if (receiver) {
-        const response = await fetch(`/sendMessage/${receiver}`, {
+    let sendButton = document.getElementById('loginSubmit');
+    sendButton.addEventListener("click", async function() {
+        console.log("adfsasadf");
+        let id = document.getElementById('loginEmail').nodeValue;
+        let password = document.getElementById('loginPassword').nodeValue;
+        let user = {
+            id: id,
+            password: password
+        }
+        const response = await fetch(`/signInUser`, {
             method: 'POST',
-            body: {
-                subject: subject.value,
-                body: body.value,
-                date: new Date(),
-                receiver: id
-            },
+            body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then((data) => {
             console.log(data);
-        }).catch((err) => {
-            console.log(err);
         });
-    }
 
+    });
+
+}
+
+
+function createUser() {
+        let first_name = document.getElementById('fname').value
+        let last_name = document.getElementById('lname').value
+        let email = document.getElementById('email').value
+        let pass = document.getElementById('password').value
+
+        let userinfo = {
+            fname: first_name,
+            lname: last_name,
+            email: email,
+            password: pass
+        }
+        userData.push(userinfo)
+        //use only for submitting it as a form 
+    // let create = document.getElementById('submit');
+    // create.addEventListener("click", async function() {
+
+    //     let user = {
+    //         fname: first_name,
+    //         lname: last_name,
+    //         email: email,
+    //         password: password
+    //     }
+    //     const response = await fetch (`/createuser` , {
+    //         method: 'POST',
+    //         body: JSON.stringify(user),
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     }).then((data) => {
+    //         console.log(data)
+    //     })
+    // })
+    localStorage.setItem("userinfo", JSON.stringify(userData))
+    window.location.href = '/completeregistration'
+        //prevents form from submitting twice
+    // document.getElementById('signupForm').addEventListener('submit', function(e) {
+    //     e.preventDefault();
+    // })
 }

@@ -1,0 +1,73 @@
+.login {
+    font-family: 'Overlock', cursive;
+    float:right;
+    margin: 2% 1% 0 0 ;
+
+}
+
+#logo {
+    height: 7%;
+    margin: none;
+
+}
+
+#loginSubmit {
+    background: #81ccfe;
+    color: white;
+    border: none;
+    width: 7%;
+    padding: 5px;
+    margin-top: 33px;
+}
+
+#landingPicture {
+    width: 50%;
+    float: left;
+}
+
+input::placeholder {
+    padding-left: 3%
+}
+
+#landingimg {
+    height: 400px;
+    width: 400px;
+    margin: 16% 0 0 16%
+}
+
+#form {
+    width: 50%;
+    float: right;
+}
+
+div > p {
+    font-size: 26pt;
+    width: 50%;
+    margin: 15% auto 4%;
+}
+
+#signupForm {
+    margin: 2% auto;
+}
+
+#fname {
+    margin-right:4%;
+    margin-left: 25%;
+    width: 24%;
+}
+
+#lname {
+    width: 24.5%;
+}
+
+.registration {
+    width: 53%;
+    margin: 2% 0 0 25%
+}
+
+#submit {
+    background: #81ccfe;
+    color: white;
+    border: none;
+    padding: 10px;
+}

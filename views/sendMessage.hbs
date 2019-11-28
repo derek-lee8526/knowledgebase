@@ -1,0 +1,20 @@
+{{#if receiver }}
+<div id="sendMessagePage">
+    <div id="sendMessageContainer">
+        <div id="sendMessageImgContainer">
+            <img id="sendMessageImg" src="{{receiver.imageURL}}" />
+        </div>
+        <div>
+            <div>
+                <input id="sendMessageSubject" type='text' placeholder="Subject" />
+            </div>
+            <div id="sendMessageDetailContainer">
+                
+                <textarea id="sendMessagePageTextArea" placeholder="message details..."></textarea>
+                <button id="sendMessagePageButton" onclick="sendMessage({{receiver.id}})"> Message </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{/if}}

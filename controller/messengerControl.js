@@ -24,3 +24,18 @@ exports.getMessages = (req, res, next) => {
 
     res.send(JSON.stringify(msgData));
 }
+
+
+exports.sendMessage = (req, res, next) => {
+    console.log(req.query.data);
+    let data = req.query.data;
+    let msgData = messengereModel.sendMessage(data);
+    console.log(msgData);
+}
+
+exports.sendMessagePage = (req, res, next) => {
+
+    let receiverData = messengereModel.sendMessagePageData(req.query.id);
+
+    res.render("sendMessage", { receiver: receiverData, sendMessageCSS: true })
+}

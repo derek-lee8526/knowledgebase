@@ -1,20 +1,26 @@
 #messengerContainer {
-    background-color: blue;
     width: 100%;
     height: 100%;
 }
 
 #userContainer {
-    background-color: gray;
     width: 30%;
     height: 100%;
     float: left;
+    border-right: 1px solid lightgray;
 }
 
-#messageContainer {
+#messageContainer {}
+
+#messageBiggerContainer {
     background-color: white;
     width: 70%;
     float: right;
+}
+
+#sendContainer {
+    position: absolute;
+    bottom: 0;
 }
 
 .message {}
@@ -60,13 +66,21 @@ p {
     flex-direction: row;
     width: 100%;
     padding: 10px;
-    border-bottom: 1px darkgray solid;
+    border-bottom: 1px lightgray solid;
+}
+
+.usersContainer:hover,
+.usersContainer:active,
+.usersContainer:focus {
+    background-color: lightgray;
 }
 
 .msgContainer {
     display: flex;
     flex-direction: row;
     width: 100%;
+    margin-left: 15px;
+    margin-top: 20px;
 }
 
 .msgImgContainer {
@@ -82,8 +96,56 @@ p {
 .msgBodyContainer {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 10px;
 }
 
-.msgNameContainer {}
+.msgNameContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.msgNameContainer span {
+    display: inline-block;
+}
+
+.msgNameContainer span:first-child {
+    font-weight: bold;
+}
+
+.msgNameContainer span:last-child {
+    margin-left: 20px;
+    font-size: 13px;
+    color: lightgray;
+    text-align: center;
+}
 
 .msgTextContainer {}
+
+#messageBox {
+    width: 70vw;
+    height: 15vh;
+    border-top: 0.5px solid lightgray;
+    border-bottom: 0.5px solid lightgray;
+    border-left: 0px;
+    border-right: 0px;
+    font-size: 15px;
+    padding: 10px;
+}
+
+#sendButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(243, 246, 248);
+}
+
+#sendButton {
+    background-color: rgb(20, 161, 230);
+    color: white;
+    width: 60px;
+    height: 35px;
+    font-size: 20px;
+    margin-right: 20px;
+}
