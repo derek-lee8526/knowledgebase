@@ -1,9 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    updateUser();
+    // updateUser();
 }, false);
 
 function updateUser() {
+    let first_name = JSON.parse(localStorage.getItem('userinfo'))[0].fname
+    let last_name = JSON.parse(localStorage.getItem('userinfo'))[0].lname
+    let email = JSON.parse(localStorage.getItem('userinfo'))[0].email
+    let pass = JSON.parse(localStorage.getItem('userinfo'))[0].password
+    
     let update = document.getElementById('completeregistration')
     update.addEventListener("click", async function() {
         let img = document.getElementById('img').value
@@ -11,6 +16,10 @@ function updateUser() {
         let country = document.getElementById('country').value
         let dob = document.getElementById('dob').value
         let userUpdate = {
+            fname: first_name,
+            lname: last_name,
+            email: email,
+            password: pass,
             img: img,
             desc: desc,
             country: country,
@@ -28,6 +37,6 @@ function updateUser() {
     })
     document.getElementById('registration').addEventListener('submit', function(e) {
         e.preventDefault();
-        window.location.href = '/messenger'
+        window.location.href = '/home'
     })
 }

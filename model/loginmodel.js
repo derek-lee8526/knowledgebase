@@ -3,9 +3,10 @@ let db = require('../utils/database')
     //add user to the database
 function addUser(data) {
     console.log("============= CREATE USER ===============");
+    console.log(data)
     firebase.auth().createUserWithEmailAndPassword(data.email,data.password)
     .then((user) => {
-        let sql = "Insert into users (ID, first_name, last_name, email, password) values ('" + user.user.uid + "','" + data.fname + "','" + data.lname + "','" + data.email + "','" + data.password + "')";
+        let sql = "Insert into users (ID, first_name, last_name, email, password, imageurl, description, country, dateofbirth) values ('" + user.user.uid + "','" + data.fname + "','" + data.lname + "','" + data.email + "','" + data.password + "','" + data.img + "','" + data.desc + "','" + data.country + "','" + data.dob + "')";
         db.execute(sql)
         console.log('user:', user.user.uid);
         console.log('additionalinfo:', user.additionalUserInfo);
@@ -20,20 +21,20 @@ function addUser(data) {
     }
 
 //add data to user's profile
-function addProfile(data) {
-    let userUpdate = {
-        img: data.img,
-        desc: data.desc,
-        country: data.country,
-        dob: data.dob
+// function addProfile(data) {
+//     let userUpdate = {
+//         img: data.img,
+//         desc: data.desc,
+//         country: data.country,
+//         dob: data.dob
         
-    }
-    db.execute("Update users SET imageurl = ?, description = ?, country = ?, dateofbirth = ? ORDER ID by DESC LIMIT 1", [userUpdate.img, userUpdate.desc, userUpdate.country,userUpdate.dob], function(err,result){
-        if(err) {
-            return console.log(err)
-        }
-    })
-}
+//     }
+//     db.execute("Update users SET imageurl = ?, description = ?, country = ?, dateofbirth = ? ORDER ID by DESC LIMIT 1", [userUpdate.img, userUpdate.desc, userUpdate.country,userUpdate.dob], function(err,result){
+//         if(err) {
+//             return console.log(err)
+//         }
+//     })
+// }
 
 function login(data) {
     firebase.auth().signInWithEmailAndPassword("leeyongl5263@gmail.com", "12341234")
@@ -65,8 +66,8 @@ function signout() {
 }
 
 module.exports = {
-    createUser: addUser,
-    updateUser: addProfile,
+    addUser: addUser,
+    // updateUser: addProfile,
     signin: login,
     signout: signout
 
