@@ -1,0 +1,230 @@
+#homeContainer {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    color: grey;
+}
+
+#profileContainer {
+    background-color: white;
+    width: 30%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#postContainer {
+    background-color: white;
+    width: 470px;
+    float: left;
+    padding: 10px;
+}
+
+.profileImageContainer img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 2px white solid;
+    margin: 20px;
+    margin-top: 100px;
+}
+
+.profileName {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.profileInfo{
+    margin: 5px;
+}
+
+.profileData{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 5px;
+}
+
+.textContainer {
+    width: 40%;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    display: block;
+}
+
+.usersContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px darkgray solid;
+}
+
+.form-control {
+    padding: 5px;
+}
+
+.form-subject {
+    width: 300px;
+}
+
+.form-detail {
+    height:100px;
+    width: 300px;
+    text-align: initial;
+}
+
+.searchContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.postContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.postImageContainer {
+    float: left;
+}
+
+.postImageContainer img {
+    width: 75px;
+    height: 75px;
+    border-radius: 37.5px;
+}
+
+.postBodyContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.next-btn {
+    float: right;
+    margin: 5px;
+    background-color: white; /* Green */
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    /* padding: 8px 32px; */
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+}
+
+#postReplyContainer{
+    display: none;
+    float: right;
+    width: 400px;
+}
+
+.replyContainer {
+    display: flex;
+    flex-direction: row;
+    /* padding: 5px; */
+}
+
+.replyImgContainer img{
+    width: 75px;
+    height: 75px;
+    border-radius: 37.5px;
+    padding: 10px;
+}
+
+.replyTextContainer{
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+.replyFormContainer {
+    width: 400px;
+    padding: 5px;
+}
+.form-reply {
+    height:80px;
+    width: 400px;
+    text-align: initial;
+}
+
+.comment-btn {
+    background-color: dodgerblue; /* Green */
+    border: 2px solid white;
+    color: white;
+    /* padding: 8px 32px; */
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+}
+
+
+.profileA {
+    display: inline-block;
+}
+
+.post-btn {
+    background-color: white; /* Green */
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    /* padding: 8px 32px; */
+    height: 30px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+select {
+    outline-color: dodgerblue;
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    height: 30px;
+    width: 200px;
+}
+
+.go-btn {
+    background-color: dodgerblue; /* Green */
+    border: 2px solid white;
+    color: white;
+    /* padding: 8px 32px; */
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.profile-table {
+    margin: auto;
+}
+.profile-td {
+    text-align: left;
+    width: 100px;
+}
+
+.subject-td{
+    width: 200px;
+}
+
+/* table {
+    border: 2px solid black;
+}
+
+td {
+    border: 2px solid black;
+} */
+.topic-td{
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    width: 100px;
+}
