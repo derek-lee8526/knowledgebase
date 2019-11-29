@@ -1,4 +1,6 @@
 let db = require('../utils/database');
+let firebase = require('firebase');
+const userID = firebase.auth().currentUser ? firebase.auth().currentUser.uid : null;
 
 // Send messages with ID
 function sendMessage(id) {
@@ -7,32 +9,40 @@ function sendMessage(id) {
 
 // Get messages with user ID
 function getMessage(id) {
+    console.log("============ GET MESSAGE =================");
     console.log(id);
-    let sql = `SELECT * FROM message WHERE sender="${id}" AND receiver="${id}"`;
-    let messages = [{
-            firstName: 'bran',
-            lastName: 'Lee',
-            message: 'Test',
-            messageTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
-        },
-        {
-            firstName: 'bran',
-            lastName: 'Lee',
-            message: 'Test',
-            messageTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
-        },
-        {
-            firstName: 'bran2',
-            lastName: 'Lee',
-            message: 'Test',
-            messageTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
-        },
+    console.log(firebase.auth().currentUser.uid);
 
-    ];
-    return messages;
+    if (userID) {
+        let sql = `SELECT * FROM message WHERE sender="${id}" AND receiver="${id}"`;
+        // let messages = [{
+        //         firstName: 'bran',
+        //         lastName: 'Lee',
+        //         message: 'Test',
+        //         messageTime: 'Sept 19th',
+        //         imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
+        //     },
+        //     {
+        //         firstName: 'bran',
+        //         lastName: 'Lee',
+        //         message: 'Test',
+        //         messageTime: 'Sept 19th',
+        //         imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
+        //     },
+        //     {
+        //         firstName: 'bran2',
+        //         lastName: 'Lee',
+        //         message: 'Test',
+        //         messageTime: 'Sept 19th',
+        //         imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
+        //     },
+
+        // ];
+        return db.execute(sql);
+    }
+    return null;
+
+
 }
 
 // Get the list of users
@@ -74,7 +84,7 @@ function sendMessage(data) {
     return result;
 }
 
-function sendMessagePageData(id) {
+function sendMessagePageData(id, data) {
     let user = {
         id: 2,
         firstName: 'bran2',
@@ -84,6 +94,8 @@ function sendMessagePageData(id) {
         imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg'
 
     };
+    let result = db.execute(
+        'INSERT INTO table_name (id, sender, receiver, body, messageTime) VALUES (1, test1, test2, "testbody", "sept 1st 2019");');
     return user;
 }
 

@@ -22,6 +22,7 @@ exports.getMessages = (req, res, next) => {
     console.log(req.query.id);
     let msgData = messengereModel.getMessage(req.query.id);
 
+    console.log("uid:", req.session);
     res.send(JSON.stringify(msgData));
 }
 
@@ -29,13 +30,14 @@ exports.getMessages = (req, res, next) => {
 exports.sendMessage = (req, res, next) => {
     console.log(req.query.data);
     let data = req.query.data;
+
     let msgData = messengereModel.sendMessage(data);
     console.log(msgData);
 }
 
 exports.sendMessagePage = (req, res, next) => {
 
-    let receiverData = messengereModel.sendMessagePageData(req.query.id);
+    let receiverData = messengereModel.sendMessagePageData(req.query.id, req.body);
 
     res.render("sendMessage", { receiver: receiverData, sendMessageCSS: true })
 }
