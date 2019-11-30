@@ -1,0 +1,242 @@
+body {
+    font-weight: bold;
+}
+
+
+#upDiv {
+    border: 1px solid;
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+}
+
+#upLeftDiv {
+    border: 1px solid;
+    width: 70vw;
+    
+}
+
+#upLeftInfoDiv {
+    border: 1px solid;
+    margin-left: 10%;
+}
+
+#upRightDiv {
+    border: 1px solid;
+    width: 29vw;
+}
+
+#upRightInfoDiv {
+    border: 1px solid;
+    width: 15vw;
+    margin-top: 60%;
+}
+
+#userTopImgContainer {
+    width: 50vw;
+}
+
+#topImg {
+    width: 15vw;
+
+}
+
+img {
+    border-radius: 50%;
+}
+
+#userName {
+    font-size: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#uesrDesc {
+    font-size: 45px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#country {
+    font-size: 45px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#messageBtn {
+    background-color: lightskyblue;
+    color: white;
+    font-size: 30px;
+}
+
+#likePlus {
+    display: flex;
+    border: 1px solid;
+    color: lightskyblue;
+    font-size: 30px;
+
+}
+
+#likeNum {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#likePlusBtn {
+    background-color: lightskyblue;
+    color: white;
+    font-size: 30px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+#postInfo {
+    color: lightskyblue;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#downDiv {
+    border: 1px solid;
+    width: 100vw;
+    /* height: 80vh; */
+    
+}
+
+#downDivText {
+    margin-left: 8%;
+}
+
+#postByUser {
+    border: 1px solid;
+    margin-left: 8%;
+
+}
+
+/* .postImageContainer {
+    float: left;
+} */
+
+.downImg {
+    width: 8vw;
+}
+
+.postBodyContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.postContainer {
+    background-color: white;
+    width: 50vw;
+    display: flex;
+    padding: 10px;
+    border: 1px solid;
+    margin-left:15%;
+}
+
+.postBodyContainer {
+    font-weight: bold;
+    border: 2px solid;
+    width: 50vw;
+
+}
+
+.subject-td{
+    width: 400px;
+}
+
+/* table {
+    margin-bottom: 0px;
+} */
+
+table {
+    width: 40vw;
+}
+
+.topic-td{
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    width: 100px;
+    float: right;
+}
+
+/* td {
+    font-weight: bold;
+    margin-bottom: 0px;
+    border: 1px solid;
+} */
+
+td{
+    border: 1px solid;
+}
+
+.reply-td {
+    float: right;
+}
+
+#postReplyContainer{
+    display: none;
+    margin-left: 25%;
+    /* float: right; */
+    width: 500px;
+}
+
+.replyContainer {
+    display: flex;
+    flex-direction: row;
+    /* padding: 5px; */
+}
+
+.replyImgContainer img{
+    width: 75px;
+    height: 75px;
+    border-radius: 37.5px;
+    padding: 10px;
+}
+
+.replyTextContainer{
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+.replyFormContainer {
+    width: 400px;
+    padding: 5px;
+}
+
+.form-reply {
+    height:80px;
+    width: 400px;
+    text-align: initial;
+}
+
+.comment-btn {
+    background-color: dodgerblue; /* Green */
+    border: 2px solid white;
+    color: white;
+    /* padding: 8px 32px; */
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+}
+
+.next-btn {
+    float: right;
+    margin: 5px;
+    margin-right: 30%;
+    background-color: white; /* Green */
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    /* padding: 8px 32px; */
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+}
