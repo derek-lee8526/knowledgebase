@@ -27,21 +27,9 @@ function getUserMessages(id){
     return messages;
 }
 
-// Add post to the database
-function addPost(data) {
-    let sql = "INSERT INTO post (subject, detail, topic, postTime, imgURL, replies) VALUES ('" + data.subject+ "','"+ data.detail+ "','" + data.postTime + "','" + data.imageURL + "','" + data.replies + "')";
-    return db.execute(sql);
-}
-
-// Get posts with topic
-function getPosts(topic){
-    let sql = `SELECT * FROM post WHERE topic="${id}"`;
-    return db.execute(sql);
-}
-
-// Get latest posts in the database
-function getLatestPosts() {
-    let sql = `SELECT * FROM post ORDER BY postTime DESC`;
+// Get latest posts by user in the database
+function getPosts(id) {
+    let sql = `SELECT * FROM post WHERE posterID="${id}" ORDER BY postTime DESC`;
     let posts = [{
             subject: 'Users setting deleted',
             detail: 'Test1',
@@ -55,7 +43,7 @@ function getLatestPosts() {
             detail: 'Test2',
             topic: 'nodejs',
             postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/63.jpg',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
             replies: 2,
         },
         {
@@ -63,7 +51,7 @@ function getLatestPosts() {
             detail: 'Test3',
             topic: 'nodejs',
             postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/64.jpg',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
             replies: 3,
         },
         {
@@ -71,7 +59,7 @@ function getLatestPosts() {
             detail: 'Test4',
             topic: 'nodejs',
             postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
             replies: 4,
         },
         {
@@ -79,7 +67,7 @@ function getLatestPosts() {
             detail: 'Test5',
             topic: 'nodejs',
             postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/66.jpg',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
             replies: 5,
         },
     ];
@@ -96,7 +84,6 @@ function getTotalReplies(id){
 function getReplies(id){
     let sql = `SELECT * FROM reply WHERE id="${id}"`;
     let replies = [{
-        
             comment: 'comment test1',
             imageURL: 'https://randomuser.me/api/portraits/med/men/17.jpg',
         },
@@ -117,10 +104,8 @@ module.exports = {
     getUserProfile: getUserProfile,
     getUserPosts: getUserPosts,
     getUserMessages: getUserMessages,
-    addPost: addPost,
     getPosts: getPosts,
-    getLatestPosts: getLatestPosts,
-    getTotalReplies: getTotalReplies,
     getReplies: getReplies,
+    getTotalReplies: getTotalReplies,
     addReply: addReply
 }
