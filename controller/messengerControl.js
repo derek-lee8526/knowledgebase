@@ -7,10 +7,15 @@ exports.getUserList = (req, res, next) => {
 
     getData.then((data) => {
         console.log("users: ", data);
-        res.render('messenger', { users: data, messengerCSS: true });
+        res.render('messenger', { users: data, messengerCSS: true, loggedin: true });
     }).catch((err) => {
-        console.log("ERROR: ", err);
-    })
+        console.log(err);
+        if (err == "USER ID UNDEFINED") {
+            res.redirect('/')
+        }
+        alert("An error occurred. Please try again later...");
+
+    });
 
 
 }
@@ -23,7 +28,12 @@ exports.getMessages = (req, res, next) => {
     msgData.then((data) => {
         console.log("data:", data);
         res.send(data);
-    })
+    }).catch((err) => {
+        if (err == "USER ID UNDEFINED") {
+            res.redirect('/')
+        }
+        alert("An error occurred. Please try again later...");
+    });
 
 }
 
@@ -37,8 +47,11 @@ exports.sendMessage = (req, res, next) => {
         console.log("data:", data);
         res.send(data);
     }).catch((err) => {
-        console.log(err);
-    })
+        if (err == "USER ID UNDEFINED") {
+            res.redirect('/')
+        }
+        alert("An error occurred. Please try again later...");
+    });
 }
 
 exports.sendMessageFromPage = (req, res, next) => {
@@ -50,7 +63,12 @@ exports.sendMessagePage = (req, res, next) => {
     let receiverData = messengereModel.sendMessagePageData(req.params.id);
     console.log(receiverData);
     receiverData.then((data) => {
-        res.render("sendMessage", { receiver: data, sendMessageCSS: true })
-    })
+        res.render("sendMessage", { receiver: data, sendMessageCSS: true, loggedin: true })
+    }).catch((err) => {
+        if (err == "USER ID UNDEFINED") {
+            res.redirect('/')
+        }
+        alert("An error occurred. Please try again later...");
+    });
 
 }

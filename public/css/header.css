@@ -1,4 +1,4 @@
-#loggedInHeader{
+#loggedInHeader {
     width: 10%;
 }
 
@@ -22,4 +22,20 @@
 #searchInput {
     height: 36px;
     width: 30%;
+}
+
+#loginInputContainer {
+    display: flex;
+    flex-direction: row;
+    float: right;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

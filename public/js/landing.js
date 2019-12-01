@@ -12,10 +12,11 @@ function signInButton() {
     let sendButton = document.getElementById('loginSubmit');
     sendButton.addEventListener("click", async function() {
 
-        let id = document.getElementById('loginEmail').nodeValue;
-        let password = document.getElementById('loginPassword').nodeValue;
+        let id = document.getElementById('loginEmail').value;
+        let password = document.getElementById('loginPassword').value;
+        console.log(id);
         let user = {
-            id: id,
+            email: id,
             password: password
         }
         const response = await fetch(`/signInUser`, {

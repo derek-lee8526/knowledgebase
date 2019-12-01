@@ -38,7 +38,7 @@ function addUser(data) {
 // }
 
 async function login(data) {
-    return await firebase.auth().signInWithEmailAndPassword("test098@gmail.com", "12341234")
+    return await firebase.auth().signInWithEmailAndPassword(data.email, data.password)
         .then((user) => {
             console.log("user:", user.user.uid);
 

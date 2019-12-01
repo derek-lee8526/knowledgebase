@@ -35,6 +35,9 @@
     
 </head>
 <body>
+    {{#if loggedin}}
+        {{> search}}
+    {{/if}}
     {{{ body }}}
 </body>
 </html>

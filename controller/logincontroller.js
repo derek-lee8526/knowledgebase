@@ -33,9 +33,9 @@ exports.updateUser = (req, res) => {
 }
 
 exports.signInUser = async(req, res, next) => {
-    let user = req.body.user
+    let user = req.body
     let signInUser = await loginmodel.signin(user);
-    // res.render('landing')
+
     console.log("signin", signInUser);
     res.send(JSON.stringify(signInUser));
     return signInUser;
