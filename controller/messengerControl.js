@@ -2,42 +2,55 @@ let messengereModel = require('../model/messengerModel');
 
 
 exports.getUserList = (req, res, next) => {
+    console.log("============= GET USER LIST =================");
     let getData = messengereModel.getUserList();
-    console.log(getData);
-    // getData.then(([data, metaData]) => {
-    //     res.render('messengerUsers', { data: data, messengerCSS: true })
-    // })
 
-    // getData.forEach((data) => {
-    //     console.log(data);
-    //     let passingData = [];
-    //     passingData.push(data);
-    //     res.render('messenger', { users: passingData, messengerCSS: true })
-    // })
-    res.render('messenger', { users: getData, messengerCSS: true })
+    getData.then((data) => {
+        console.log("users: ", data);
+        res.render('messenger', { users: data, messengerCSS: true });
+    }).catch((err) => {
+        console.log("ERROR: ", err);
+    })
+
 
 }
 
 exports.getMessages = (req, res, next) => {
-    console.log(req.query.id);
-    let msgData = messengereModel.getMessage(req.query.id);
+    console.log("================= GET MESSAGE ================");
+    console.log("body:", req.params.id);
+    let msgData = messengereModel.getMessage(req.params.id);
 
-    console.log("uid:", req.session);
-    res.send(JSON.stringify(msgData));
+    msgData.then((data) => {
+        console.log("data:", data);
+        res.send(data);
+    })
+
 }
 
 
 exports.sendMessage = (req, res, next) => {
-    console.log(req.query.data);
-    let data = req.query.data;
-
+    console.log("========= SEND MESSAGE ==========");
+    let data = req.body;
+    console.log("body: ", data);
     let msgData = messengereModel.sendMessage(data);
-    console.log(msgData);
+    msgData.then((data) => {
+        console.log("data:", data);
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
+    })
 }
 
-exports.sendMessagePage = (req, res, next) => {
-
+exports.sendMessageFromPage = (req, res, next) => {
     let receiverData = messengereModel.sendMessagePageData(req.query.id, req.body);
 
-    res.render("sendMessage", { receiver: receiverData, sendMessageCSS: true })
+}
+exports.sendMessagePage = (req, res, next) => {
+    console.log("queryid:", req.params.id);
+    let receiverData = messengereModel.sendMessagePageData(req.params.id);
+    console.log(receiverData);
+    receiverData.then((data) => {
+        res.render("sendMessage", { receiver: data, sendMessageCSS: true })
+    })
+
 }

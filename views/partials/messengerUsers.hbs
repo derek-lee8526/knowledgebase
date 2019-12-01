@@ -1,18 +1,18 @@
 
     
-    <div class='usersContainer' id="{{id}}" onclick="getMessage({{ id }})">
+    <div class='usersContainer' id="{{ uid }}" onclick='getMessage("{{ uid }}")'>
         
         <div class='leftUserContainer'>
-            <img src='{{ imageURL }}' />
+            <img src='{{ imageurl }}' />
         </div>
         <div class='midUserContainer'>
             <div class='textContainer'>
-                <p> {{ firstName}} {{ lastName }}</p>
+                <p> {{ first_name}} {{ last_name }}</p>
                 <p> {{ lastMsg }} </p>
             </div>
 
         </div>
         <div class='rightUserContainer'>
-            <span> {{ lastMsgDate }} </span>
+            <span> {{ messageTime }} </span>
         </div>
     </div>

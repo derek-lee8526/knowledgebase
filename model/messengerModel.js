@@ -1,108 +1,140 @@
 let db = require('../utils/database');
 let firebase = require('firebase');
-const userID = firebase.auth().currentUser ? firebase.auth().currentUser.uid : null;
-
-// Send messages with ID
-function sendMessage(id) {
-
-}
+const uuidv1 = require('uuid/v1');
 
 // Get messages with user ID
 function getMessage(id) {
     console.log("============ GET MESSAGE =================");
-    console.log(id);
-    console.log(firebase.auth().currentUser.uid);
-
+    console.log("selecteUser: ", id);
+    const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
     if (userID) {
-        let sql = `SELECT * FROM message WHERE sender="${id}" AND receiver="${id}"`;
-        // let messages = [{
-        //         firstName: 'bran',
-        //         lastName: 'Lee',
-        //         message: 'Test',
-        //         messageTime: 'Sept 19th',
-        //         imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
-        //     },
-        //     {
-        //         firstName: 'bran',
-        //         lastName: 'Lee',
-        //         message: 'Test',
-        //         messageTime: 'Sept 19th',
-        //         imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
-        //     },
-        //     {
-        //         firstName: 'bran2',
-        //         lastName: 'Lee',
-        //         message: 'Test',
-        //         messageTime: 'Sept 19th',
-        //         imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg'
-        //     },
+        let newID = id.replace(/\s+/, "");
+        console.log("neID:", newID);
+        console.log(userID);
+        let sql = `SELECT sender_user.ID as sender_id, sender_user.imageurl as sender_pic, sender_user.first_name as sender_fname,` +
+            `sender_user.last_name as sender_lname, receiver_user.ID as receiver_id, receiver_user.imageurl as receiver_pic,` +
+            `receiver_user.first_name as receiver_fname, receiver_user.last_name as receiver_lname,` +
+            `sender, receiver, messageTime, message.id as msg_id, message.body as body  FROM message ` +
+            `JOIN Users AS sender_user ON message.sender = sender_user.ID JOIN Users AS receiver_user ` +
+            `ON message.receiver = receiver_user.ID ` +
+            `WHERE (sender="${newID}" and receiver="${userID}") OR (sender="${userID}" and receiver="${newID}") ORDER BY messageTime;`
+            // let sql = `SELECT * FROM message JOIN Users as sender_user on sender_user.ID = message.sender JOIN Users as receiver_user on receiver_user.ID = message.receiver` +
+            //     ` WHERE (sender="${newID}" and receiver="${userID}") OR (sender="${userID}" and receiver="${newID}") ORDER BY messageTime;`;
+            // WHERE (sender="${userID}" AND receiver="${id}") OR ` +
+            // `(receiver = "${userID}" AND sender = "${id}") ORDER BY messageTime;`;
+        return new Promise((resolve, reject) => {
+            db.query(sql, (err, data) => {
+                if (err) {
+                    reject(err);
+                }
 
-        // ];
-        return db.execute(sql);
+                console.log("messages:", data);
+
+                resolve(data);
+            })
+        });
+
+    } else {
+        return null;
     }
-    return null;
-
-
-}
-
-// Get the list of users
-function getList() {
-
 }
 
 // Get all the data of messenger
 function getUserList() {
-    let data = [{
-            id: 1,
-            firstName: 'bran',
-            lastName: 'Lee',
-            lastMsg: 'Test',
-            lastMsgDate: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg'
+    const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
+    if (!userID) {
+        throw new Error("USER ID UNDEFINED");
+    }
+    let sql = `SELECT sender_user.ID as sender_id, sender_user.imageurl as sender_pic, sender_user.first_name as sender_fname,` +
+        `sender_user.last_name as sender_lname, receiver_user.ID as receiver_id, receiver_user.imageurl as receiver_pic,` +
+        `receiver_user.first_name as receiver_fname, receiver_user.last_name as receiver_lname,` +
+        `sender, receiver, messageTime FROM message INNER JOIN Users AS sender_user ON sender_user.ID = sender INNER JOIN Users as receiver_user ON receiver_user.ID = receiver WHERE (sender = "${userID}" OR receiver = "${userID}") GROUP BY sender_user.ID ORDER BY messageTime;`;
 
-        },
-        {
-            id: 2,
-            firstName: 'bran2',
-            lastName: 'Lee',
-            lastMsg: 'Test',
-            lastMsgDate: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg'
+    return new Promise((resolve, reject) => {
+        db.query(sql, (err, data) => {
+            if (err) {
+                reject(err);
+            }
 
-        },
-    ];
+            console.log(data);
+            let result = [];
+            data.forEach((user, i) => {
+                console.log(new Date(user.messageTime));
+                console.log("user:222", user);
+                let tempUser = {}
+                if (user.sender == userID) {
+                    tempUser = {
+                        imageurl: user.receiver_pic,
+                        first_name: user.receiver_fname,
+                        last_name: user.receiver_lname,
+                        messageTime: new Date(user.messageTime).toDateString(),
+                        uid: user.receiver_id
+                    };
+                } else {
+                    tempUser = {
+                        imageurl: user.sender_pic,
+                        first_name: user.sender_fname,
+                        last_name: user.sender_lname,
+                        messageTime: new Date(user.messageTime).toDateString(),
+                        uid: user.sender_id
+                    };
+                }
 
-    return data;
+                result.push(tempUser);
+            })
+            resolve(result);
+        })
+    });
 }
 
 function sendMessage(data) {
+    const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
+    if (!userID) {
+        return null;
+    }
+    const msgID = uuidv1();
+    console.log(msgID)
+    let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    console.log("receiver:", data);
+    let sql = `INSERT INTO message (id, sender, receiver, body, messageTime) VALUES ("${msgID}","${userID}", "${data.receiver}", "${data.body}","${date}");`;
+    return new Promise((resolve, reject) => {
+        db.query(sql, (err, data) => {
+            if (err) {
+                reject(err);
+            }
 
+            console.log(data);
+            resolve(data);
+        })
+    });
 
-    let result = db.execute(
-        'INSERT INTO table_name (id, sender, receiver, body, messageTime) VALUES (1, test1, test2, "testbody", "sept 1st 2019");');
-
-    return result;
 }
 
-function sendMessagePageData(id, data) {
-    let user = {
-        id: 2,
-        firstName: 'bran2',
-        lastName: 'Lee',
-        lastMsg: 'Test',
-        lastMsgDate: 'Sept 19th',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg'
+function sendMessagePageData(id) {
+    console.log("=========== SEND MESSAGE PAGE ==========");
 
-    };
-    let result = db.execute(
-        'INSERT INTO table_name (id, sender, receiver, body, messageTime) VALUES (1, test1, test2, "testbody", "sept 1st 2019");');
-    return user;
+    const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
+    if (!userID) {
+        throw new Error("USER ID UNDEFINED");
+    }
+    console.log("id:", id);
+    let sql = `SELECT * FROM Users WHERE ID = "${id}";`;
+    return new Promise((resolve, reject) => {
+        db.query(sql, (err, data) => {
+            if (err) {
+                reject(err);
+            }
+
+            console.log("user:", data);
+            resolve(data[0]);
+        })
+    });
+
 }
 
 module.exports = {
     send: sendMessage,
     getMessage: getMessage,
-    getList: getList,
     getUserList: getUserList,
     sendMessage: sendMessage,
     sendMessagePageData: sendMessagePageData

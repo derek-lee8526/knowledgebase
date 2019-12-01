@@ -1,0 +1,37 @@
+
+        <div id='upDiv'>
+            <div id='upLeftDiv'>
+                <div id='upLeftInfoDiv'>
+                    {{#each otherUserProfile}}
+                    <div id='userTopImgContainer'>
+                        <img id='topImg' src= '{{ this.imageURL }}' />
+                    </div>
+                    <div class='textContainer'>
+                        <p id='userName'> {{ this.firstName }} {{this.lastName}} </p>
+                        <p id='uesrDesc'> {{ this.description }} </p>
+                        <p id='country'> {{ this.country }} </p>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div id='upRightDiv'>
+                <div id='upRightInfoDiv'>
+                    <button id='messageBtn'>Message</button>
+                    {{#each otherUserProfile}}
+                    <div id='likePlus'>
+                        <p id='likeNum'>{{ this.likes }} Likes</p>
+                        <button id='likePlusBtn'>+</button>
+                    </div>
+                    {{/each}}
+                    <p id='postInfo'>{{ otherUserPosts }} Posts</p>
+                </div>   
+            </div>
+        </div>
+        <div id='downDiv'>
+            <h1 id='downDivText'>All posts by Kevin</h2>
+            {{#each otherUserLatestPosts}}
+            {{>otherUserProfilePost this}}
+            {{/each}}
+            <button class="next-btn" onclick="">Next-></button>
+        </div>
+

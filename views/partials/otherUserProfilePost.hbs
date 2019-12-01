@@ -1,0 +1,30 @@
+<div class='postContainer'>
+                <div class='postImageContainer'>
+                    <img class='downImg' src='https://randomuser.me/api/portraits/med/men/62.jpg' />
+                </div>
+                <div class='postBodyContainer'>
+                    <table>
+                        <div class='postSubjectContainer'>
+                            <tr>
+                                <td class="subject-td"><span> {{ subject }} </span></td>
+                                <td class="topic-td"><span> {{ topic }} </span></td>
+                            </tr>
+                        </div>
+                        <div class='postDetailContainer'>
+                            <tr>
+                                <td colspan="2"><p> {{ detail }} </p></td>
+                            </tr>
+                        </div>
+                        <div class='postTimeContainer'>
+                            <tr>
+                                <td><p> {{ postTime }}</p></td>
+                                <td class='reply-td'><div onClick="getReply( {{id}} )">{{ replies }} replies</div></td>
+                            </tr>     
+                        </div>
+                    </table>
+                </div>
+            </div>       
+        </div>
+        <div id='postReplyContainer'>
+                        
+        </div>

@@ -1,20 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-
     sendButtonTrigger();
-
 }, false);
 
-let receiver = null;
+
+let tempReceiver = null;
 
 async function getMessage(id) {
     console.log(id);
     receiver = id;
+    tempReceiver = id;
     // let userItem = document.getElementById(id);
     // userItem.style.backgroundColor = "lightgray";
+    let curUser = JSON.parse(sessionStorage.getItem("user"))[0].ID;
+
+    console.log(curUser);
     const response = await fetch(`/getMessage/${id}`, {
         method: 'GET',
-        // body: {name: nameInput.value, about: aboutInput.value, imgURL: imgInput.value},
         headers: {
             'Content-Type': 'application/json'
         }
@@ -22,78 +24,169 @@ async function getMessage(id) {
         console.log(data);
         return data.json();
     }).then((result) => {
+        console.log(result);
         let container = document.getElementById('messageContainer');
         container.innerHTML = '';
+
         result.forEach((item) => {
-            let msgContainer = document.createElement('div');
-            msgContainer.className = 'msgContainer';
-
-            let msgImgContainer = document.createElement('div');
-            msgImgContainer.className = 'msgImgContainer';
-
-            let img = document.createElement('img');
-            img.src = item.imageURL;
-
-            let msgBodyContainer = document.createElement('div');
-            msgBodyContainer.className = 'msgBodyContainer';
-
-            let msgNameContainer = document.createElement('div');
-            msgNameContainer.className = 'msgNameContainer';
-
-            let nameSpan = document.createElement('span');
-            nameSpan.innerHTML = item.firstName + ' ' + item.lastName;
-
-            let dateSpan = document.createElement('span');
-            dateSpan.innerHTML = item.messageTime;
-
-            let msgTextContainer = document.createElement('div');
-            msgTextContainer.className = 'msgTextContainer';
-
-            let message = document.createElement('p');
-            message.innerHTML = item.message;
+            console.log(item);
+            if (item.sender_id == curUser) {
+                createSender(item);
+            } else {
+                createSender(item);
+            }
 
 
-            msgImgContainer.appendChild(img);
-
-            msgNameContainer.appendChild(nameSpan);
-            msgNameContainer.appendChild(dateSpan);
-
-            msgTextContainer.appendChild(message);
-
-            msgBodyContainer.appendChild(msgNameContainer);
-            msgBodyContainer.appendChild(msgTextContainer);
-
-            msgContainer.appendChild(msgImgContainer);
-            msgContainer.appendChild(msgBodyContainer);
-            container.appendChild(msgContainer);
 
         });
     })
 }
 
+function createReceiver(item) {
+    let container = document.getElementById('messageContainer');
+    let msgContainer = document.createElement('div');
+    msgContainer.className = 'msgContainer';
+
+    let msgImgContainer = document.createElement('div');
+    msgImgContainer.className = 'msgImgContainer';
+
+    let img = document.createElement('img');
+    img.src = item.receiver_pic;
+
+    let msgBodyContainer = document.createElement('div');
+    msgBodyContainer.className = 'msgBodyContainer';
+
+    let msgNameContainer = document.createElement('div');
+    msgNameContainer.className = 'msgNameContainer';
+
+    let nameSpan = document.createElement('span');
+    nameSpan.innerHTML = item.receiver_fname + ' ' + item.receiver_lname;
+
+    let dateSpan = document.createElement('span');
+    dateSpan.innerHTML = item.messageTime;
+
+    let msgTextContainer = document.createElement('div');
+    msgTextContainer.className = 'msgTextContainer';
+
+    let message = document.createElement('p');
+    message.innerHTML = item.body;
+
+
+    msgImgContainer.appendChild(img);
+
+    msgNameContainer.appendChild(nameSpan);
+    msgNameContainer.appendChild(dateSpan);
+
+    msgTextContainer.appendChild(message);
+
+    msgBodyContainer.appendChild(msgNameContainer);
+    msgBodyContainer.appendChild(msgTextContainer);
+
+    msgContainer.appendChild(msgImgContainer);
+    msgContainer.appendChild(msgBodyContainer);
+    container.appendChild(msgContainer);
+}
+
+function createSender(item) {
+    let container = document.getElementById('messageContainer');
+    let msgContainer = document.createElement('div');
+    msgContainer.className = 'msgContainer';
+
+    let msgImgContainer = document.createElement('div');
+    msgImgContainer.className = 'msgImgContainer';
+
+    let img = document.createElement('img');
+    img.src = item.sender_pic;
+
+    let msgBodyContainer = document.createElement('div');
+    msgBodyContainer.className = 'msgBodyContainer';
+
+    let msgNameContainer = document.createElement('div');
+    msgNameContainer.className = 'msgNameContainer';
+
+    let nameSpan = document.createElement('span');
+    nameSpan.innerHTML = item.sender_fname + ' ' + item.sender_lname;
+
+    let dateSpan = document.createElement('span');
+    dateSpan.innerHTML = item.messageTime;
+
+    let msgTextContainer = document.createElement('div');
+    msgTextContainer.className = 'msgTextContainer';
+
+    let message = document.createElement('p');
+    message.innerHTML = item.body;
+
+
+    msgImgContainer.appendChild(img);
+
+    msgNameContainer.appendChild(nameSpan);
+    msgNameContainer.appendChild(dateSpan);
+
+    msgTextContainer.appendChild(message);
+
+    msgBodyContainer.appendChild(msgNameContainer);
+    msgBodyContainer.appendChild(msgTextContainer);
+
+    msgContainer.appendChild(msgImgContainer);
+    msgContainer.appendChild(msgBodyContainer);
+    container.appendChild(msgContainer);
+}
+
 function sendButtonTrigger() {
-
+    console.log("sEND");
     let sendButton = document.getElementById('sendButton');
-    sendButton.addEventListener("click", function() {
-        let text = document.getElementById('messageBox').value;
+    let curTime = new Date()
 
+    sendButton.addEventListener("click", async function() {
+        let text = document.getElementById('messageBox').value;
+        const response = await fetch(`/sendMessage`, {
+            method: 'POST',
+            body: JSON.stringify({
+                body: text,
+                date: curTime,
+                receiver: tempReceiver
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((data) => {
+            console.log(data);
+            let curUser = JSON.parse(sessionStorage.getItem("user"))[0];
+            console.log(curUser);
+            let newMsg = {
+                body: text,
+                messageTime: curTime,
+                sender_fname: curUser.first_name,
+                sender_lname: curUser.last_name,
+                sender_pic: curUser.imageurl
+
+            };
+            createSender(newMsg);
+
+        }).catch((err) => {
+            console.log(err);
+        });
         console.log(text);
     });
 
+
 }
 
-async function sendMessage(id) {
+sendMessage = async(id) => {
+    // let nameOfFunction = this[event.target.name];
+    // let arg1 = event.target.getAttribute('data-arg1');
+    console.log("sending message...", id)
     let subject = document.getElementById('sendMessageSubject');
     let body = document.getElementById('sendMessagePageTextArea');
-    if (receiver) {
-        const response = await fetch(`/sendMessage/${receiver}`, {
+    if (id) {
+        const response = await fetch(`/sendMessage`, {
             method: 'POST',
-            body: {
+            body: JSON.stringify({
                 subject: subject.value,
                 body: body.value,
                 date: new Date(),
                 receiver: id
-            },
+            }),
             headers: {
                 'Content-Type': 'application/json'
             }
