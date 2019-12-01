@@ -1,0 +1,25 @@
+#loggedInHeader{
+    width: 10%;
+}
+
+#searchBar {
+    width: 90%;
+    float: right;
+    margin-top: -46px;
+}
+
+#logout {
+    float: right;
+    background: #81ccfe;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-right: 5%;
+    width: 120px;
+    font-weight: bold;
+}
+
+#searchInput {
+    height: 36px;
+    width: 30%;
+}
