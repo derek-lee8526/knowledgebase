@@ -55,6 +55,20 @@ function createUser() {
     userData.push(userinfo)
 
     localStorage.setItem("userinfo", JSON.stringify(userData))
-    window.location.href = '/completeregistration'
+    if(validatePassword()){
+        window.location.href = '/completeregistration'
+    }
+    else {
+        $("#password").css("border", "2px solid #E34234");
+        $("#confirmpassword").css("border", "2px solid #E34234");
+    }
 
 }
+
+function validatePassword() {
+    if ($("#password").val() !== $("#confirmpassword").val()) {
+        return false;
+    } else {
+        return true;
+    }
+  }
