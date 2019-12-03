@@ -6,8 +6,8 @@ exports.getHomepageData = (req, res, next) => {
     let userMessages = homepageModel.getUserMessages(req.query.id);
     let postData = homepageModel.getLatestPosts();
     let postReplies = homepageModel.getReplies(req.query.id);
-    console.log(userPosts)
-    res.render('homepage', { loggedin: true, userProfile: userData, userPosts: userPosts, userMessages: userMessages, latestPosts: postData, postReplies: postReplies, homepageCSS: true })
+    console.log("userData,homeage: ", userData[0].ID)
+    res.render('homepage', { loggedin: true, userID: userData[0].ID, userProfile: userData, userPosts: userPosts, userMessages: userMessages, latestPosts: postData, postReplies: postReplies, homepageCSS: true })
 }
 
 exports.postAddPost = (req, res, next) => {

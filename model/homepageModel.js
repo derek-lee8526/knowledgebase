@@ -1,25 +1,26 @@
 let db = require('../utils/database');
 
 // Get user profile with user ID
-function getUserProfile(id){
+function getUserProfile(id) {
     let profile = [{
         firstName: 'Sean',
         lastName: 'Williamson',
         imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
         description: '10 years of work experience in tech',
         likes: 10,
+        ID: 'WBd4BBU2aOa26bJalenrZnW6Nh42'
     }]
     return profile;
 }
 
 // Get total number of post(s) with user ID
-function getUserPosts(id){
+function getUserPosts(id) {
     let posts = 3;
     return posts;
 }
 
 // Get total messages of post(s) with user ID
-function getUserMessages(id){
+function getUserMessages(id) {
     let messages = 5;
     return messages;
 }
@@ -30,7 +31,7 @@ function addPost(data) {
 }
 
 // Get posts with topic
-function getPosts(topic){
+function getPosts(topic) {
 
 }
 
@@ -81,9 +82,9 @@ function getLatestPosts() {
 }
 
 // Get replies with post id
-function getReplies(id){
+function getReplies(id) {
     let replies = [{
-        
+
             comment: 'comment test1',
             imageURL: 'https://randomuser.me/api/portraits/med/men/17.jpg',
         },
@@ -95,7 +96,7 @@ function getReplies(id){
     return replies;
 }
 
-function addReply(data){
+function addReply(data) {
 
 }
 

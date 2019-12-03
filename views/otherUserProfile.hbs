@@ -16,7 +16,7 @@
             </div>
             <div id='upRightDiv'>
                 <div id='upRightInfoDiv'>
-                    <button id='messageBtn'>Message</button>
+                    <button id='messageBtn'><a href='/sendMessage/{{ userID }}'>Message</a></button>
                     {{#each otherUserProfile}}
                     <div id='likePlus'>
                         <p id='likeNum'>{{ this.likes }} Likes</p>

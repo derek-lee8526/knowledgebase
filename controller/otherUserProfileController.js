@@ -9,7 +9,7 @@ exports.getOtherUserData = (req, res, next) => {
     console.log(userPosts)
         // res.render('homepage', {userProfile: userData, userPosts: userPosts, userMessages: userMessages, latestPosts: postData, postReplies: postReplies, homepageCSS: true})
         //i need to change 'homepage'.
-    res.render('otherUserProfile', { loggedin: true, otherUserProfile: userData, otherUserPosts: userPosts, otherUserLatestPosts: postData, otheruserPostReplies: postReplies, otherUserProfileCSS: true })
+    res.render('otherUserProfile', { loggedin: true, userID: userData[0].ID, otherUserProfile: userData, otherUserPosts: userPosts, otherUserLatestPosts: postData, otheruserPostReplies: postReplies, otherUserProfileCSS: true })
 }
 
 // exports.postAddPost = (req,res,next) => {

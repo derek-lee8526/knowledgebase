@@ -20,7 +20,7 @@
         <link href='/css/sendMessage.css' rel='stylesheet' />
     {{/if}}
 
-     {{#if homepageCSS}}
+    {{#if homepageCSS}}
         <link href='/css/homepage.css' rel='stylesheet' />
     {{/if}}
 
@@ -35,9 +35,7 @@
     
 </head>
 <body>
-    {{#if loggedin}}
-        {{> search}}
-    {{/if}}
+    {{> header}} 
     {{{ body }}}
 </body>
 </html>

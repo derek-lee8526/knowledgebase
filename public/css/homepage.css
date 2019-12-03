@@ -34,11 +34,11 @@
     padding: 5px;
 }
 
-.profileInfo{
+.profileInfo {
     margin: 5px;
 }
 
-.profileData{
+.profileData {
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 5px;
@@ -74,7 +74,7 @@ a {
 }
 
 .form-detail {
-    height:100px;
+    height: 100px;
     width: 300px;
     text-align: initial;
 }
@@ -109,7 +109,8 @@ a {
 .next-btn {
     float: right;
     margin: 5px;
-    background-color: white; /* Green */
+    background-color: white;
+    /* Green */
     border: 2px solid dodgerblue;
     color: dodgerblue;
     /* padding: 8px 32px; */
@@ -120,7 +121,7 @@ a {
     /* display: inline-block; */
 }
 
-#postReplyContainer{
+#postReplyContainer {
     display: none;
     float: right;
     width: 400px;
@@ -132,31 +133,32 @@ a {
     /* padding: 5px; */
 }
 
-.replyImgContainer img{
+.replyImgContainer img {
     width: 75px;
     height: 75px;
     border-radius: 37.5px;
     padding: 10px;
 }
 
-.replyTextContainer{
+.replyTextContainer {
     margin-top: auto;
     margin-bottom: auto;
-
 }
 
 .replyFormContainer {
     width: 400px;
     padding: 5px;
 }
+
 .form-reply {
-    height:80px;
+    height: 80px;
     width: 400px;
     text-align: initial;
 }
 
 .comment-btn {
-    background-color: dodgerblue; /* Green */
+    background-color: dodgerblue;
+    /* Green */
     border: 2px solid white;
     color: white;
     /* padding: 8px 32px; */
@@ -167,13 +169,13 @@ a {
     float: right;
 }
 
-
 .profileA {
     display: inline-block;
 }
 
 .post-btn {
-    background-color: white; /* Green */
+    background-color: white;
+    /* Green */
     border: 2px solid dodgerblue;
     color: dodgerblue;
     /* padding: 8px 32px; */
@@ -182,7 +184,7 @@ a {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-  }
+}
 
 select {
     outline-color: dodgerblue;
@@ -193,7 +195,8 @@ select {
 }
 
 .go-btn {
-    background-color: dodgerblue; /* Green */
+    background-color: dodgerblue;
+    /* Green */
     border: 2px solid white;
     color: white;
     /* padding: 8px 32px; */
@@ -207,14 +210,25 @@ select {
 .profile-table {
     margin: auto;
 }
+
 .profile-td {
     text-align: left;
     width: 100px;
 }
 
-.subject-td{
+.profile-td a {
+    text-decoration: none;
+    text-decoration-color: gray;
+}
+
+.profile-td a:visited {
+    color: gray;
+}
+
+.subject-td {
     width: 200px;
 }
+
 
 /* table {
     border: 2px solid black;
@@ -223,7 +237,8 @@ select {
 td {
     border: 2px solid black;
 } */
-.topic-td{
+
+.topic-td {
     border: 2px solid dodgerblue;
     color: dodgerblue;
     width: 100px;

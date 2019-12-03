@@ -10,8 +10,7 @@ async function getMessage(id) {
     console.log(id);
     receiver = id;
     tempReceiver = id;
-    // let userItem = document.getElementById(id);
-    // userItem.style.backgroundColor = "lightgray";
+
     let curUser = JSON.parse(sessionStorage.getItem("user"))[0].ID;
 
     console.log(curUser);
@@ -21,13 +20,13 @@ async function getMessage(id) {
             'Content-Type': 'application/json'
         }
     }).then((data) => {
-        console.log(data);
+
         return data.json();
     }).then((result) => {
-        console.log(result);
+
         let container = document.getElementById('messageContainer');
         container.innerHTML = '';
-
+        let lastID = ""
         result.forEach((item) => {
             console.log(item);
             if (item.sender_id == curUser) {
@@ -35,10 +34,14 @@ async function getMessage(id) {
             } else {
                 createSender(item);
             }
-
-
+            lastID = item.msg_id;
 
         });
+        document.getElementById(lastID).scrollIntoView({
+            behavior: 'smooth'
+        });
+
+
     })
 }
 
@@ -91,6 +94,7 @@ function createSender(item) {
     let container = document.getElementById('messageContainer');
     let msgContainer = document.createElement('div');
     msgContainer.className = 'msgContainer';
+    msgContainer.id = item.msg_id;
 
     let msgImgContainer = document.createElement('div');
     msgImgContainer.className = 'msgImgContainer';
@@ -149,6 +153,8 @@ function sendButtonTrigger() {
             headers: {
                 'Content-Type': 'application/json'
             }
+        }).then((result) => {
+            return result.json()
         }).then((data) => {
             console.log(data);
             let curUser = JSON.parse(sessionStorage.getItem("user"))[0];
@@ -158,10 +164,15 @@ function sendButtonTrigger() {
                 messageTime: curTime,
                 sender_fname: curUser.first_name,
                 sender_lname: curUser.last_name,
-                sender_pic: curUser.imageurl
+                sender_pic: curUser.imageurl,
+                msg_id: data.msg_id
 
             };
             createSender(newMsg);
+            document.getElementById(newMsg.msg_id).scrollIntoView({
+                behavior: 'smooth'
+            });
+
 
         }).catch((err) => {
             console.log(err);
@@ -192,6 +203,7 @@ sendMessage = async(id) => {
             }
         }).then((data) => {
             console.log(data);
+            window.location.href = "/homepage"
         }).catch((err) => {
             console.log(err);
         });

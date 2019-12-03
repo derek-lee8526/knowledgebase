@@ -45,7 +45,7 @@ function getUserList() {
         let sql = `SELECT sender_user.ID as sender_id, sender_user.imageurl as sender_pic, sender_user.first_name as sender_fname,` +
             `sender_user.last_name as sender_lname, receiver_user.ID as receiver_id, receiver_user.imageurl as receiver_pic,` +
             `receiver_user.first_name as receiver_fname, receiver_user.last_name as receiver_lname,` +
-            `sender, receiver, messageTime FROM message INNER JOIN Users AS sender_user ON sender_user.ID = sender INNER JOIN Users as receiver_user ON receiver_user.ID = receiver WHERE (sender = "${userID}" OR receiver = "${userID}") GROUP BY sender_user.ID ORDER BY messageTime;`;
+            `sender, receiver, messageTime FROM message INNER JOIN Users AS sender_user ON sender_user.ID = sender INNER JOIN Users as receiver_user ON receiver_user.ID = receiver WHERE (sender = "${userID}" OR receiver = "${userID}") GROUP BY sender_user.ID, receiver_user.ID ORDER BY messageTime;`;
 
         db.query(sql, (err, data) => {
             if (err) {
@@ -99,6 +99,7 @@ function sendMessage(data) {
             }
 
             console.log(data);
+            data.msg_id = msgID;
             resolve(data);
         })
     });
