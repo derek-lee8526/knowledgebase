@@ -1,83 +1,89 @@
 async function getReply(id) {
-  console.log(id);
-  const response = await fetch(`/getReply/${id}`, {
-      method: 'GET',
-      // body: {name: nameInput.value, about: aboutInput.value, imgURL: imgInput.value},
-      headers: {
-          'Content-Type': 'application/json'
-      }
-  }).then((data) => {
-      console.log(data);
-      return data.json();
-  }).then((result) => {
-      let container = document.getElementById('postReplyContainer');
-      container.innerHTML = '';
-      result.forEach((item) => {
-          let replyContainer = document.createElement('div');
-          replyContainer.className = 'replyContainer';
+    console.log(id);
+    const response = await fetch(`/getReply/${id}`, {
+        method: 'GET',
+        // body: {name: nameInput.value, about: aboutInput.value, imgURL: imgInput.value},
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((data) => {
+        console.log(data);
+        return data.json();
+    }).then((result) => {
+        let container = document.getElementById('postReplyContainer');
+        container.innerHTML = '';
+        result.forEach((item) => {
+            let replyContainer = document.createElement('div');
+            replyContainer.className = 'replyContainer';
 
-          let replyImgContainer = document.createElement('div');
-          replyImgContainer.className = 'replyImgContainer';
+            let replyImgContainer = document.createElement('div');
+            replyImgContainer.className = 'replyImgContainer';
 
-          let img = document.createElement('img');
-          img.src = item.imageURL;
+            let img = document.createElement('img');
+            img.src = item.imageURL;
 
-          let replyBodyContainer = document.createElement('div');
-          replyBodyContainer.className = 'replyBodyContainer';
-          
-          let replyTextContainer = document.createElement('div');
-          replyTextContainer.className = 'replyTextContainer';
+            let replyBodyContainer = document.createElement('div');
+            replyBodyContainer.className = 'replyBodyContainer';
 
-          let reply = document.createElement('p');
-          reply.innerHTML = item.comment;
+            let replyTextContainer = document.createElement('div');
+            replyTextContainer.className = 'replyTextContainer';
 
-          replyImgContainer.appendChild(img);
-          replyTextContainer.appendChild(reply);
+            let reply = document.createElement('p');
+            reply.innerHTML = item.comment;
 
-          replyContainer.appendChild(replyImgContainer);
-          replyContainer.appendChild(replyTextContainer);
-          container.appendChild(replyContainer);
+            replyImgContainer.appendChild(img);
+            replyTextContainer.appendChild(reply);
 
-      });
-  })
-  let container = document.getElementById('postReplyContainer');
-  let replyFormConainer = document.createElement("div");
-  replyFormConainer.className = "replyFormContainer";
+            replyContainer.appendChild(replyImgContainer);
+            replyContainer.appendChild(replyTextContainer);
+            container.appendChild(replyContainer);
 
-  let div1 = document.createElement("div");
-  div1.className = "form-control";
+        });
+    })
+    let container = document.getElementById('postReplyContainer');
+    let replyFormConainer = document.createElement("div");
+    replyFormConainer.className = "replyFormContainer";
 
-  let replyForm = document.createElement("form");
-  replyForm.className = "replyForm";
-  replyForm.action = "/homepage/addReply";
-  replyForm.method = "POST";
+    let div1 = document.createElement("div");
+    div1.className = "form-control";
 
-  let replyInput = document.createElement("input");
-  replyInput.type = "text";
-  replyInput.className = "form-reply";
-  replyInput.name = "reply";
-  replyInput.value = "add your reply...";
+    let replyForm = document.createElement("form");
+    replyForm.className = "replyForm";
+    replyForm.action = "/homepage/addReply";
+    replyForm.method = "POST";
 
-  let commentBtn = document.createElement("button");
-  commentBtn.className = "comment-btn";
-  commentBtn.type = "submit";
-  commentBtn.innerHTML = "comment";
+    let replyInput = document.createElement("input");
+    replyInput.type = "text";
+    replyInput.className = "form-reply";
+    replyInput.name = "reply";
+    replyInput.value = "add your reply...";
 
-  div1.appendChild(replyInput);
-  replyForm.appendChild(div1);
-  replyForm.appendChild(commentBtn);
+    let commentBtn = document.createElement("button");
+    commentBtn.className = "comment-btn";
+    commentBtn.type = "submit";
+    commentBtn.innerHTML = "comment";
 
-  replyFormConainer.appendChild(replyForm);
+    div1.appendChild(replyInput);
+    replyForm.appendChild(div1);
+    replyForm.appendChild(commentBtn);
 
-  container.appendChild(replyFormConainer);
-  displayReplies();
+    replyFormConainer.appendChild(replyForm);
+
+    container.appendChild(replyFormConainer);
+    displayReplies();
 }
 
 function displayReplies() {
-  var x = document.getElementById("postReplyContainer");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+    var x = document.getElementById("postReplyContainer");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function topicButtonListener() {
+    let topic = document.getElementById('topics');
+
+    console.log(topic.value);
 }
