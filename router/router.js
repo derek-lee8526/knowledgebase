@@ -17,9 +17,12 @@ router.post('/signOutUser', loginController.signOutUser)
 router.post('/home', loginController.updateUser)
 
 router.get('/homepage', homepageController.getHomepageData)
+router.post('/homepage/filteredPosts', homepageController.getFilteredHomepageData)
 router.post('/homepage/addPost', homepageController.postAddPost)
 router.post('/homepage/addReply', homepageController.postAddReply)
 router.get('/getReply/:id', homepageController.getReplies)
+router.get('/getPosts/', homepageController.getPosts)
+
 
 router.get('/posts', postsController.getPostsData)
 

@@ -33,7 +33,7 @@
     <div id="postContainer">
         <h1>whats your question today?</h1>
         <div class="postFormContainer">
-            <form class="postForm" action="/homepage/addPost" method="POST">
+            <form class="postForm" action="/post/addPost" method="POST">
                 <div class="form-control">
                     <input type="text" class="form-subject" name="subject" value='subject'>
                 </div>
@@ -41,7 +41,7 @@
                     <input type="text" class="form-detail" name="detail" value='explain in detail...'>
                 </div>
                 <div class="form-control">
-                    <select class="form-control" name="topic">
+                    <select class="form-control" name="topics">
                         <option value="" selected disabled hidden>topic</option>
                         <option value="php">php</option>
                         <option value="nodejs">nodejs</option>
@@ -54,7 +54,7 @@
             </form>
         </div>
         <div class="searchContainer">
-            <form action="/homepage/filteredPosts" method="POST">
+            <form>
                 <div class="form-control">
                     <label for="title">Search by topic</label>
                     <select class="form-control" name="topics">
@@ -70,14 +70,10 @@
         </div>
         <div id="latestPostContainer">
             <h2>Latest discussions</h2>
-            <div id="postsContainer">
             {{#each postData}}
             {{>post this}}
             {{/each}}
-
-            </div>
-            <button id="btn_prev" onclick="getPosts()">Previous</button>
-            <button id="btn_next" onclick="nextPage()">Next-></button>
+            <button class="next-btn" onclick="">Next-></button>
         </div>
     </div>
 </div>
