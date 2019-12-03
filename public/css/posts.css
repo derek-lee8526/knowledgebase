@@ -33,11 +33,11 @@
     padding: 5px;
 }
 
-.profileInfo{
+.profileInfo {
     margin: 5px;
 }
 
-.profileData{
+.profileData {
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 5px;
@@ -46,6 +46,7 @@
 .profile-table {
     margin: auto;
 }
+
 .profile-td {
     text-align: left;
     width: 100px;
@@ -72,17 +73,18 @@
     flex-direction: column;
     padding: 20px;
 }
-.subject-td{
+
+.subject-td {
     width: 200px;
 }
 
-.topic-td{
+.topic-td {
     border: 2px solid dodgerblue;
     color: dodgerblue;
     width: 100px;
 }
 
-#postReplyContainer{
+#postReplyContainer {
     display: none;
     float: right;
     width: 400px;
@@ -94,17 +96,16 @@
     /* padding: 5px; */
 }
 
-.replyImgContainer img{
+.replyImgContainer img {
     width: 75px;
     height: 75px;
     border-radius: 37.5px;
     padding: 10px;
 }
 
-.replyTextContainer{
+.replyTextContainer {
     margin-top: auto;
     margin-bottom: auto;
-
 }
 
 .replyFormContainer {
@@ -113,13 +114,14 @@
 }
 
 .form-reply {
-    height:80px;
+    height: 80px;
     width: 400px;
     text-align: initial;
 }
 
 .comment-btn {
-    background-color: dodgerblue; /* Green */
+    background-color: dodgerblue;
+    /* Green */
     border: 2px solid white;
     color: white;
     /* padding: 8px 32px; */
@@ -130,3 +132,14 @@
     float: right;
 }
 
+#searchedResultContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#searchedResultContainer>div {
+    width: 50%;
+    margin: 0 auto;
+}

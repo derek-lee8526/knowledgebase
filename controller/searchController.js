@@ -3,11 +3,11 @@ let searchModel = require('../model/searchModel');
 
 exports.getSearch = (req, res, next) => {
 
-    let getData = searchModel.getSearch(req.param.topic);
+    let getData = searchModel.getSearch(req.params.topic);
 
     getData.then((data) => {
-        console.log("users: ", data);
-        res.render('search', { searchedPost: data, messengerCSS: true, loggedin: true });
+        console.log("posts: ", data);
+        res.render('search', { searchedPost: data, postsCSS: true, loggedin: true });
     }).catch((err) => {
         console.log(err);
         if (err == "USER ID UNDEFINED") {

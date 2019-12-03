@@ -181,6 +181,12 @@ function displayReplies() {
     }
 }
 
+function topicButtonListener() {
+    let topic = document.getElementById('topics');
+
+    window.location.href = `/search/${topic.value}`;
+}
+
 window.onload = function() {
     changePage(1);
     //console.log(this.objJson);

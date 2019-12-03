@@ -10,14 +10,15 @@ function getSearch(topic) {
         if (!userID) {
             reject("USER ID UNDEFINED");
         }
-        let sql = `SELECT * FROM Post WHERE topic LIKE "${topic}";`;
+        console.log(topic);
+        let sql = `SELECT * FROM post WHERE topic LIKE "${topic}";`;
         db.query(sql, (err, data) => {
             if (err) {
                 reject(err);
             }
 
-            console.log("user:", data);
-            resolve(data[0]);
+            console.log("post:", data);
+            resolve(data);
         })
     });
 

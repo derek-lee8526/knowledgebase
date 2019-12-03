@@ -10,7 +10,7 @@ exports.getHomepageData = (req, res, next) => {
     latestPosts.then(([data, metadata]) => {
         //res.render('people', {people: data[0], peopleCSS: true});
         console.log(data);
-        res.render('homepage', { userProfile: userData, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
+        res.render('homepage', { userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
     });
 }
 
@@ -24,7 +24,7 @@ exports.getFilteredHomepageData = (req, res, next) => {
     console.log(req.body.topics)
     filteredPosts.then(([data, metadata]) => {
         console.log(data);
-        res.render('homepage', { userProfile: userData, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
+        res.render('homepage', { userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
     });
 }
 
