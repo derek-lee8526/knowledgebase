@@ -2,7 +2,7 @@
     <div id="profileContainer">
         {{#each userProfile}}
         <div class="profileImageContainer">
-            <img src='{{ this.imageURL }}' />
+            <img src='{{ this.imageURL }}'/>
         </div>
         <div class="profileInfo">
             <div class="profileName">
@@ -14,26 +14,26 @@
             <table class="profile-table">
                 <tr>
                     <td class="profile-td">Likes:</td>
-                    <td>{{ this.likes }}</td>
+                    <td>{{ this.likes }}</td> 
                 </tr>
                 {{/each}}
                 {{!-- had to take out of loop --}}
                 <tr>
-                    <td class="profile-td"><a href="/posts">Posts:</a></td>
-                    <td>{{ userPosts }}</td>
+                    <td class="profile-td"><a href="">Posts:</a></td>
+                    <td>{{ userPosts }}</td>  
                 </tr>
                 <tr>
-                    <td class="profile-td"><a href="/messenger">Messages:</a></td>
-                    <td>{{ userMessages }}</td>
-                </tr>
+                    <td class="profile-td"><a href='/messenger'+>Messages:</a></td>
+                    <td>{{ userMessages }}</td>  
+                </tr>     
             </table>
         </div>
-        <a href="/editProfile">Edit Profile</a>
+        <a href="">Edit Profile</a>
     </div>
     <div id="postContainer">
         <h1>whats your question today?</h1>
         <div class="postFormContainer">
-            <form class="postForm" action="/post/addPost" method="POST">
+            <form class="postForm" action="/post/add" method="POST">
                 <div class="form-control">
                     <input type="text" class="form-subject" name="subject" value='subject'>
                 </div>
@@ -54,25 +54,30 @@
             </form>
         </div>
         <div class="searchContainer">
-            <form>
-                <div class="form-control">
-                    <label for="title">Search by topic</label>
-                    <select class="form-control" name="topics">
-                        <option value="php">php</option>
-                        <option value="nodejs">nodejs</option>
-                        <option value="java">java</option>
-                        <option value="sql">sql</option>
-                        <option value="zend">zend</option>
-                    </select>
-                    <button class="go-btn" type="submit">go-></button>
-                </div>
-            </form>
+            
+            <div class="form-control">
+                <label for="title">Search by topic</label>
+                <select id="topics">
+                    <option value="php">php</option>
+                    <option value="nodejs">nodejs</option>
+                    <option value="java">java</option>
+                    <option value="sql">sql</option>
+                    <option value="zend">zend</option>
+                </select>
+                <button class="go-btn" id="topicButton" onclick="topicButtonListener()">go-></button>
+            </div>
+            
         </div>
         <div id="latestPostContainer">
             <h2>Latest discussions</h2>
             {{#each latestPosts}}
             {{>post this}}
             {{/each}}
+        {{!-- <div id="repliesContainer">
+            {{#each postReplies}}
+            {{>post this}}
+            {{/each}}
+        </div> --}}
             <button class="next-btn" onclick="">Next-></button>
         </div>
     </div>

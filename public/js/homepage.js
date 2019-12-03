@@ -49,7 +49,7 @@ async function getReply(id) {
 
   let replyForm = document.createElement("form");
   replyForm.className = "replyForm";
-  replyForm.action = "/reply/add";
+  replyForm.action = "/homepage/addReply";
   replyForm.method = "POST";
 
   let replyInput = document.createElement("input");

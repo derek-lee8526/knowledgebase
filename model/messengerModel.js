@@ -37,6 +37,7 @@ function getMessage(id) {
 
 // Get all the data of messenger
 function getUserList() {
+    console.log("========== GET USER LIST ===============");
     return new Promise((resolve, reject) => {
         const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
         if (!userID) {
