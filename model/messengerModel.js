@@ -42,10 +42,10 @@ function getUserList() {
         if (!userID) {
             reject("USER ID UNDEFINED");
         }
-        let sql = `SELECT sender_user.ID as sender_id, sender_user.imageurl as sender_pic, sender_user.first_name as sender_fname,` +
-            `sender_user.last_name as sender_lname, receiver_user.ID as receiver_id, receiver_user.imageurl as receiver_pic,` +
+        let sql = `SELECT sender_user.ID as sender_id, sender_user.description as sender_description, sender_user.imageurl as sender_pic, sender_user.first_name as sender_fname,` +
+            `sender_user.last_name as sender_lname, receiver_user.ID as receiver_id, receiver_user.description as receiver_description, receiver_user.imageurl as receiver_pic,` +
             `receiver_user.first_name as receiver_fname, receiver_user.last_name as receiver_lname,` +
-            `sender, receiver, messageTime FROM message INNER JOIN Users AS sender_user ON sender_user.ID = sender INNER JOIN Users as receiver_user ON receiver_user.ID = receiver WHERE (sender = "${userID}" OR receiver = "${userID}") GROUP BY sender_user.ID, receiver_user.ID ORDER BY messageTime;`;
+            `sender, receiver, messageTime, body FROM message INNER JOIN Users AS sender_user ON sender_user.ID = sender INNER JOIN Users as receiver_user ON receiver_user.ID = receiver WHERE (sender = "${userID}" OR receiver = "${userID}") GROUP BY sender_user.ID, receiver_user.ID ORDER BY messageTime;`;
 
         db.query(sql, (err, data) => {
             if (err) {
@@ -54,16 +54,23 @@ function getUserList() {
 
             console.log(data);
             let result = [];
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+                "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+            ];
             data.forEach((user, i) => {
                 console.log(new Date(user.messageTime));
                 console.log("user:222", user);
                 let tempUser = {}
+                let tempDate = new Date(user.messageTime);
+                let date = monthNames[tempDate.getMonth()] + " " + tempDate.getDate();
                 if (user.sender == userID) {
                     tempUser = {
                         imageurl: user.receiver_pic,
                         first_name: user.receiver_fname,
                         last_name: user.receiver_lname,
-                        messageTime: new Date(user.messageTime).toDateString(),
+                        description: user.receiver_description,
+                        messageTime: date,
+                        body: user.body,
                         uid: user.receiver_id
                     };
                 } else {
@@ -71,7 +78,9 @@ function getUserList() {
                         imageurl: user.sender_pic,
                         first_name: user.sender_fname,
                         last_name: user.sender_lname,
-                        messageTime: new Date(user.messageTime).toDateString(),
+                        description: user.sender_description,
+                        messageTime: date,
+                        body: user.body,
                         uid: user.sender_id
                     };
                 }
