@@ -12,14 +12,14 @@ exports.getEditProfileData = (req, res, next) => {
 // update profile in database
 exports.updateProfile = (req, res, next) => {
     let pObject = {
-        fname: req.body.fname,
-        lname: req.body.lname,
-        desc: req.body.desc,
-        dob: req.body.dob,
+        first_name: req.body.fname,
+        last_name: req.body.lname,
+        description: req.body.desc,
+        dateofbirth: req.body.dob,
         country: req.body.country,
-        img: req.body.img,
+        imageurl: req.body.img,
     }
-
+    console.log(req.body);
     editProfileModel.updateProfile(pObject);
     res.redirect(301, '/editProfile');
 }

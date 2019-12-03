@@ -13,3 +13,4 @@ CREATE TABLE IF NOT EXISTS Users (
     `dateofbirth` VARCHAR(255),
     PRIMARY KEY(`ID`)
 );
+

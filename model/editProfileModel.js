@@ -1,4 +1,6 @@
 let db = require('../utils/database');
+let firebase = require('firebase');
+const userID = firebase.auth().currentUser ? firebase.auth().currentUser.uid : null;
 
 // Get user profile with user ID
 function getUserProfile(id){
@@ -29,7 +31,7 @@ function getUserMessages(id){
 
 // Update user profile
 function updateProfile(data){
-    let sql = "UPDATE profile SET fname='" + data.comment + "'lname='" + data.comment + "'img='" + data.comment + "'desc='" + data.comment + "'country='" + data.comment + "'dob='" + data.comment + "' WHERE userID=id";
+    let sql = "UPDATE Users SET first_name='" + data.first_name + "'last_name='" + data.last_name + "'imageurl='" + data.imageurl + "'description='" + data.description + "'country='" + data.country + "'dateofbirth='" + data.dateofbirth + "' WHERE ID='"+ userID +"'";
     return db.execute(sql);
 }
 

@@ -41,4 +41,56 @@ pool.query('SHOW TABLES LIKE "message"', (error, results) => {
 
 });
 
+pool.query('SHOW TABLES LIKE "post"', (error, results) => {
+    if (error) {
+        return console.log(error);
+    }
+
+    if (results.length <= 0) {
+        console.log('success', results);
+        pool.query('CREATE TABLE post ' +
+            '(id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,' +
+            'posterID VARCHAR(30) NOT NULL, ' +
+            'subject VARCHAR(30) NOT NULL, ' +
+            'detail VARCHAR(50),' +
+            'topic VARCHAR(10),' +
+            'imgURL VARCHAR(255),' +
+            'replies INT,' +
+            'postTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)', (err, result) => {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log(result);
+            });
+    } else if (results) {
+        console.log(results);
+    }
+
+});
+
+pool.query('SHOW TABLES LIKE "reply"', (error, results) => {
+    if (error) {
+        return console.log(error);
+    }
+
+    if (results.length <= 0) {
+        console.log('success', results);
+        pool.query('CREATE TABLE reply ' +
+            '(id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,' +
+            'posterID VARCHAR(30) NOT NULL, ' +
+            'replierID VARCHAR(30) NOT NULL, ' +
+            'comment VARCHAR(30) NOT NULL, ' +
+            'imgURL VARCHAR(255),' +
+            'postTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)', (err, result) => {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log(result);
+            });
+    } else if (results) {
+        console.log(results);
+    }
+
+});
+
 module.exports = pool.promise();

@@ -1,4 +1,6 @@
 let db = require('../utils/database');
+let firebase = require('firebase');
+const userID = firebase.auth().currentUser ? firebase.auth().currentUser.uid : null;
 
 // Get user profile with user ID
 function getUserProfile(id) {
@@ -29,13 +31,16 @@ function getUserMessages(id) {
 
 // Add post to the database
 function addPost(data) {
-    let sql = "INSERT INTO post (subject, detail, topic, postTime, imgURL, replies) VALUES ('" + data.subject + "','" + data.detail + "','" + data.postTime + "','" + data.imageURL + "','" + data.replies + "')";
+    //let sql = `INSERT INTO post (posterID, subject, detail, topic, imgURL, replies) VALUES ('${userID}', "test", "test", "test","test", 2)`;
+    //let sql = "INSERT INTO post (posterID, subject, detail, topic, imgURL, replies) VALUES ('"${userID}"','" + data.subject + "','" + data.detail + "','" + data.topic + "', 2)";
+    let sql = "INSERT INTO post (posterID, subject, detail, topic, replies) VALUES (1,'" + data.subject + "','" + data.detail + "','" + data.topic + "', 2)";
+
     return db.execute(sql);
 }
 
 // Get posts with topic
 function getPosts(topic) {
-    let sql = `SELECT * FROM post WHERE topic="${id}"`;
+    let sql = `SELECT * FROM post WHERE topic="${topic}"`;
     return db.execute(sql);
 }
 
@@ -83,7 +88,8 @@ function getLatestPosts() {
             replies: 5,
         },
     ];
-    return posts;
+    // return posts;
+    return db.execute(sql);
 }
 
 // Get number of replies with post id
@@ -108,8 +114,8 @@ function getReplies(id) {
     return replies;
 }
 
-function addReply(data) {
-    let sql = "INSERT INTO reply (comment, imageURL) VALUES ('" + data.comment + "','" + data.imageURL + "',)";
+function addReply(id, data) {
+    let sql = "INSERT INTO reply (posterID, replierID, comment, imageURL) VALUES (1, 2, '" + data.comment + "','" + data.imageURL + "')";
     return db.execute(sql);
 }
 
