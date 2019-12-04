@@ -2,20 +2,20 @@ const mysql = require('mysql2')
 
 // Default setting for DB 
 // (((((  Please delete your own db setting before push)))))
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     database: 'knowledgebase',
-//     password: ''
-// });
-
 const pool = mysql.createPool({
-    host: "192.168.64.2",
-    user: 'brandon',
+    host: 'localhost',
+    user: 'root',
     database: 'knowledgebase',
-    password: 'brandon',
-    connectTimeout: 30000
+    password: ''
 });
+
+// const pool = mysql.createPool({
+//     host: "192.168.64.2",
+//     user: 'brandon',
+//     database: 'knowledgebase',
+//     password: 'brandon',
+//     connectTimeout: 30000
+// });
 
 pool.query('SHOW TABLES LIKE "message"', (error, results) => {
     if (error) {

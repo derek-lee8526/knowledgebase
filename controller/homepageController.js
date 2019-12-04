@@ -3,12 +3,12 @@ let homepageModel = require('../model/homepageModel');
 // get data for homepage
 
 exports.getHomepageData = async(req, res, next) => {
-    let userData =  await homepageModel.getUserProfile();
+    let userData = await homepageModel.getUserProfile();
     let userPosts = await homepageModel.getUserPosts();
     let userMessages = await homepageModel.getUserMessages();
-    let latestPosts = await homepageModel.getLatestPosts();
+    let latestPosts = homepageModel.getLatestPosts();
     let postReplies = await homepageModel.getReplies(req.query.id);
-    latestPosts.then(([data, metadata]) => {
+    latestPosts.then((data) => {
         //res.render('people', {people: data[0], peopleCSS: true});
         console.log(data);
         res.render('homepage', { otherUserProfileCSS: true, userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })

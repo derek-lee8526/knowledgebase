@@ -20,7 +20,7 @@ function getUserProfile() {
         if (!userID) {
             reject("USER ID UNDEFINED");
         }
-        let sql = `SELECT * FROM users where id="${userID}"`;
+        let sql = `SELECT * FROM Users where id="${userID}"`;
 
         db.query(sql, (err, data) => {
             if (err) {
@@ -35,7 +35,7 @@ function getUserProfile() {
 // Get total number of post(s) with user ID
 function getUserPosts() {
     let sql = `SELECT COUNT(*) AS total FROM post WHERE posterID="${userID}"`;
-    return db.execute(sql).then(([Data,Metadata]) => {
+    return db.execute(sql).then(([Data, Metadata]) => {
         return Data[0].total;
     }).catch((error) => console.log(error));
 }
@@ -43,7 +43,7 @@ function getUserPosts() {
 // Get total messages of post(s) with user ID
 function getUserMessages() {
     let sql = `SELECT COUNT(*) AS total FROM reply WHERE posterID="${userID}"`;
-    return db.execute(sql).then(([Data,Metadata]) => {
+    return db.execute(sql).then(([Data, Metadata]) => {
         console.log(Data[0].total);
         return Data[0].total;
     }).catch((error) => console.log(error));
@@ -80,50 +80,19 @@ function getPosts(topic) {
 
 // Get latest posts in the database
 function getLatestPosts() {
-    let sql = `SELECT * FROM post ORDER BY postTime DESC`;
-    let posts = [{
-        subject: 'Users setting deleted',
-        detail: 'Test1',
-        topic: 'nodejs',
-        postTime: 'Sept 19th',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
-        replies: 1,
-    },
-    {
-        subject: 'Users setting deleted',
-        detail: 'Test2',
-        topic: 'nodejs',
-        postTime: 'Sept 19th',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/63.jpg',
-        replies: 2,
-    },
-    {
-        subject: 'Users setting deleted',
-        detail: 'Test3',
-        topic: 'nodejs',
-        postTime: 'Sept 19th',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/64.jpg',
-        replies: 3,
-    },
-    {
-        subject: 'Users setting deleted',
-        detail: 'Test4',
-        topic: 'nodejs',
-        postTime: 'Sept 19th',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/65.jpg',
-        replies: 4,
-    },
-    {
-        subject: 'Users setting deleted',
-        detail: 'Test5',
-        topic: 'nodejs',
-        postTime: 'Sept 19th',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/66.jpg',
-        replies: 5,
-    },
-    ];
+    console.log("======= GET LATEST POST ======");
     // return posts;
-    return db.execute(sql);
+    return new Promise((resolve, reject) => {
+
+        let sql = `SELECT * FROM post ORDER BY postTime DESC`;
+        db.query(sql, (err, data) => {
+            if (err) {
+                reject(err);
+            }
+            console.log(data);
+            resolve(data);
+        })
+    });
 }
 
 // Get number of replies with poster id
@@ -137,13 +106,13 @@ function getReplies(id) {
     let sql = `SELECT * FROM reply WHERE id="${id}"`;
     let replies = [{
 
-        comment: 'comment test1',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/17.jpg',
-    },
-    {
-        comment: 'comment test2',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/28.jpg',
-    },
+            comment: 'comment test1',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/17.jpg',
+        },
+        {
+            comment: 'comment test2',
+            imageURL: 'https://randomuser.me/api/portraits/med/men/28.jpg',
+        },
     ]
     return replies;
 }

@@ -1,6 +1,10 @@
 let db = require('../utils/database');
 let firebase = require('firebase');
 const uuidv1 = require('uuid/v1');
+const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey('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');
+
 
 // Get messages with user ID
 function getMessage(id) {
@@ -95,23 +99,39 @@ function getUserList() {
 
 function sendMessage(data) {
     console.log("============ SEND MESSAGE =============")
+
     return new Promise((resolve, reject) => {
         const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
         if (!userID) {
             reject("USER ID UNDEFINED");
         }
+        console.log("env", process.env);
         const msgID = uuidv1();
         let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        let sql = `INSERT INTO message (id, sender, receiver, body, messageTime) VALUES ("${msgID}","${userID}", "${data.receiver}", "${data.body}","${date}");`;
-        db.query(sql, (err, data) => {
+        let sql1 = `SELECT email FROM Users WHERE ID = "${data.receiver}";`;
+        let sql2 = `INSERT INTO message (id, sender, receiver, body, messageTime) VALUES ("${msgID}","${userID}", "${data.receiver}", "${data.body}","${date}");`;
+        db.query(sql1, (err, userData) => {
             if (err) {
-                reject(err);
+                reject(err)
             }
-
-            console.log(data);
-            data.msg_id = msgID;
-            resolve(data);
+            console.log("messageUserDATA:,", userData);
+            db.query(sql2, (err, data) => {
+                if (err) {
+                    reject(err);
+                }
+                const msg = {
+                    to: 'leeyongl5263@gmail.com',
+                    from: userData.ID,
+                    subject: data.subject,
+                    text: data.body,
+                };
+                sgMail.send(msg);
+                console.log(data);
+                data.msg_id = msgID;
+                resolve(data);
+            })
         })
+
     });
 
 }
