@@ -30,10 +30,19 @@ function getUserMessages(id){
 }
 
 // Update user profile
-function updateProfile(data){
-    let sql = "UPDATE users SET first_name='" + data.first_name + "'last_name='" + data.last_name + "'imageurl='" + data.imageurl + "'description='" + data.description + "'country='" + data.country + "'dateofbirth='" + data.dateofbirth + "' WHERE ID=1";
-    return db.execute(sql);
-}
+// function updateProfile(data){
+//     let updateUser = {
+//         fname: data.first_name,
+//         lname: data.last_name,
+//         image: data.imageurl,
+//         desc: data.description,
+//         country: data.country,
+//         dateofbirth: data.dateofbirth
+//     }
+//     db.execute(`Update users SET first_name = ?, last_name = ?, description = ?, imageurl = ?, country = ?, dateofbirth = ? WHERE ID = "${userID}"`), [updateUser.fname,updateUser.lname,updateUser.desc,updateUser.image,updateUser.country,updateUser.dateofbirth]
+//     //let sql = "UPDATE users SET first_name='" + data.first_name + "'last_name='" + data.last_name + "'imageurl='" + data.imageurl + "'description='" + data.description + "'country='" + data.country + "'dateofbirth='" + data.dateofbirth + "' WHERE id= '${userID}";
+//     //return db.execute(sql);
+// }
 
 module.exports = {
     getUserProfile: getUserProfile,

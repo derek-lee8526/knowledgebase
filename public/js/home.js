@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function updateUser() {
 
-
     let update = document.getElementById('completeregistration')
     update.addEventListener("click", async function() {
         let first_name = JSON.parse(localStorage.getItem('userinfo'))[0].fname

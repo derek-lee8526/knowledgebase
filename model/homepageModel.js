@@ -35,22 +35,18 @@ function getUserProfile() {
 // Get total number of post(s) with user ID
 function getUserPosts() {
     let sql = `SELECT COUNT(*) AS total FROM post WHERE posterID="${userID}"`;
-    // let posts = 3;
-    // return posts;
     return db.execute(sql).then(([Data,Metadata]) => {
-        console.log(Data[0].total);
         return Data[0].total;
     }).catch((error) => console.log(error));
 }
 
 // Get total messages of post(s) with user ID
 function getUserMessages() {
-
-    let sql = `SELECT COUNT(id) FROM message WHERE receiver="${userID}"`;
-    // let messages = 5;
-    // return messages;
-    return db.execute(sql);
-
+    let sql = `SELECT COUNT(*) AS total FROM reply WHERE posterID="${userID}"`;
+    return db.execute(sql).then(([Data,Metadata]) => {
+        console.log(Data[0].total);
+        return Data[0].total;
+    }).catch((error) => console.log(error));
 }
 
 // Add post to the database
