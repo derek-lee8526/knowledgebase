@@ -49,7 +49,7 @@ pool.query('SHOW TABLES LIKE "post"', (error, results) => {
     if (results.length <= 0) {
         console.log('success', results);
         pool.query('CREATE TABLE post ' +
-            '(id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,' +
+        '(id VARCHAR(50) PRIMARY KEY,' +
             'posterID VARCHAR(30) NOT NULL, ' +
             'subject VARCHAR(30) NOT NULL, ' +
             'detail VARCHAR(50),' +
@@ -76,8 +76,8 @@ pool.query('SHOW TABLES LIKE "reply"', (error, results) => {
     if (results.length <= 0) {
         console.log('success', results);
         pool.query('CREATE TABLE reply ' +
-            '(id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,' +
-            'posterID VARCHAR(30) NOT NULL, ' +
+        '(id VARCHAR(50) PRIMARY KEY,' +
+        'posterID VARCHAR(30) NOT NULL, ' +
             'replierID VARCHAR(30) NOT NULL, ' +
             'comment VARCHAR(30) NOT NULL, ' +
             'imgURL VARCHAR(255),' +

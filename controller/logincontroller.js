@@ -29,7 +29,8 @@ exports.updateUser = (req, res) => {
         }
         // console.log(userData)
     let addUser = loginmodel.addUser(userData);
-    // loginmodel.addUser(userData)   
+    // loginmodel.addUser(userData)  
+    res.redirect("/homepage"); 
 }
 
 exports.signInUser = async(req, res, next) => {

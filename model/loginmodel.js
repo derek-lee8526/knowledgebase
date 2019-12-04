@@ -5,7 +5,7 @@ let user = {};
 function addUser(data) {
     console.log("============= CREATE USER ===============");
     console.log(data)
-    firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+    return firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
         .then((user) => {
             let sql = "Insert into Users (ID, first_name, last_name, email, password, imageurl, description, country, dateofbirth) values ('" + user.user.uid + "','" + data.fname + "','" + data.lname + "','" + data.email + "','" + data.password + "','" + data.img + "','" + data.desc + "','" + data.country + "','" + data.dob + "')";
             db.execute(sql)

@@ -1,25 +1,32 @@
 let homepageModel = require('../model/homepageModel');
 
 // get data for homepage
-exports.getHomepageData = (req, res, next) => {
-    let userData = homepageModel.getUserProfile(req.query.id);
-    let userPosts = homepageModel.getUserPosts(req.query.id);
-    let userMessages = homepageModel.getUserMessages(req.query.id);
-    let latestPosts = homepageModel.getLatestPosts();
-    let postReplies = homepageModel.getReplies(req.query.id);
-    latestPosts.then(([data, metadata]) => {
-        //res.render('people', {people: data[0], peopleCSS: true});
-        console.log(data);
-        res.render('homepage', { userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
-    });
+exports.getHomepageData = async (req, res, next) => {
+    let userData =  await homepageModel.getUserProfile();
+    let userPosts = await homepageModel.getUserPosts();
+    let userMessages = await homepageModel.getUserMessages();
+    let latestPosts = await homepageModel.getLatestPosts();
+    let postReplies = await homepageModel.getReplies(req.query.id);
+    console.log(userPosts);
+    //latestPosts.then((data) => {
+        //console.log(data);
+        res.render('homepage', { userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: latestPosts, postReplies: postReplies, homepageCSS: true })
+    // }).catch((err) => {
+    //     console.log(err);
+    //     if (err == "USER ID UNDEFINED") {
+    //         res.redirect('/')
+    //     }
+    //     alert("An error occurred. Please try again later...");
+
+    // });
 }
 
 // get data for homepage with filtered topic
 exports.getFilteredHomepageData = (req, res, next) => {
-    let userData = homepageModel.getUserProfile(req.query.id);
-    let userPosts = homepageModel.getUserPosts(req.query.id);
-    let userMessages = homepageModel.getUserMessages(req.query.id);
-    let filteredPosts = homepageModel.getPosts(req.body.topics);
+    let userData = homepageModel.getUserProfile();
+    let userPosts = homepageModel.getUserPosts();
+    let userMessages = homepageModel.getUserMessages();
+    let filteredPosts = homepageModel.getPosts();
     let postReplies = homepageModel.getReplies(req.query.id);
     console.log(req.body.topics)
     filteredPosts.then(([data, metadata]) => {

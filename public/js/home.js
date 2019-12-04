@@ -37,7 +37,7 @@ function updateUser() {
             console.log(data)
             document.getElementById('registration').addEventListener('submit', function (e) {
                 e.preventDefault();
-                window.location.href = '/home'
+                window.location.href = '/homepage'
                 // localStorage.clear()
             })
         })

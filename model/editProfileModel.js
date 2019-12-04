@@ -31,7 +31,7 @@ function getUserMessages(id){
 
 // Update user profile
 function updateProfile(data){
-    let sql = "UPDATE Users SET first_name='" + data.first_name + "'last_name='" + data.last_name + "'imageurl='" + data.imageurl + "'description='" + data.description + "'country='" + data.country + "'dateofbirth='" + data.dateofbirth + "' WHERE ID='"+ userID +"'";
+    let sql = "UPDATE users SET first_name='" + data.first_name + "'last_name='" + data.last_name + "'imageurl='" + data.imageurl + "'description='" + data.description + "'country='" + data.country + "'dateofbirth='" + data.dateofbirth + "' WHERE ID=1";
     return db.execute(sql);
 }
 
