@@ -89,7 +89,7 @@ function getLatestPosts() {
             if (err) {
                 reject(err);
             }
-            console.log(data);
+            console.log("this is the latest post data",data);
             resolve(data);
         })
     });

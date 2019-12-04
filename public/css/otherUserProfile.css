@@ -1,35 +1,35 @@
 body {
-    font-weight: bold;
+    
 }
 
 
 #upDiv {
-    border: 1px solid;
+    /* border: 1px solid; */
     width: 100vw;
     height: 60vh;
     display: flex;
 }
 
 #upLeftDiv {
-    border: 1px solid;
+    /* border: 1px solid; */
     width: 70vw;
     
 }
 
 #upLeftInfoDiv {
-    border: 1px solid;
+    /* border: 1px solid; */
     margin-left: 10%;
 }
 
 #upRightDiv {
-    border: 1px solid;
+    /* border: 1px solid; */
     width: 29vw;
 }
 
 #upRightInfoDiv {
-    border: 1px solid;
+    /* border: 1px solid; */
     width: 15vw;
-    margin-top: 60%;
+    margin-top: 35%;
 }
 
 #userTopImgContainer {
@@ -46,19 +46,19 @@ img {
 }
 
 #userName {
-    font-size: 50px;
+    font-size: 45px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
 #uesrDesc {
-    font-size: 45px;
+    font-size: 40px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
 #country {
-    font-size: 45px;
+    font-size: 35px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -67,11 +67,20 @@ img {
     background-color: lightskyblue;
     color: white;
     font-size: 30px;
+    margin-bottom: 15%;
+    border-radius: 5%;
+    border: 0px;
 }
+
+a:link, a:visited {
+    text-decoration: none;
+    color: white;
+}
+
 
 #likePlus {
     display: flex;
-    border: 1px solid;
+    /* border: 1px solid; */
     color: lightskyblue;
     font-size: 30px;
 
@@ -80,6 +89,8 @@ img {
 #likeNum {
     margin-top: 0px;
     margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 #likePlusBtn {
@@ -87,18 +98,22 @@ img {
     color: white;
     font-size: 30px;
     border-radius: 50%;
+    padding-left: 5%;
+    padding-right: 5%;
     margin-left: 5px;
+    border: none;
 }
 
 #postInfo {
     color: lightskyblue;
-    font-size: 30px;
+    font-size: 25px;
     margin-top: 0px;
     margin-bottom: 0px;
+    font-weight: bold;
 }
 
 #downDiv {
-    border: 1px solid;
+    /* border: 1px solid; */
     width: 100vw;
     /* height: 80vh; */
     
@@ -109,7 +124,7 @@ img {
 }
 
 #postByUser {
-    border: 1px solid;
+    /* border: 1px solid; */
     margin-left: 8%;
 
 }
@@ -133,13 +148,13 @@ img {
     width: 50vw;
     display: flex;
     padding: 10px;
-    border: 1px solid;
+    /* border: 1px solid; */
     margin-left:15%;
 }
 
 .postBodyContainer {
     font-weight: bold;
-    border: 2px solid;
+    /* border: 2px solid; */
     width: 50vw;
 
 }
@@ -170,7 +185,7 @@ table {
 } */
 
 td{
-    border: 1px solid;
+    /* border: 1px solid; */
 }
 
 .reply-td {

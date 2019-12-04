@@ -20,7 +20,7 @@
                     {{#each otherUserProfile}}
                     <div id='likePlus'>
                         <p id='likeNum'>{{ this.likes }} Likes</p>
-                        <button id='likePlusBtn'>+</button>
+                        <button id='likePlusBtn'> + </button>
                     </div>
                     {{/each}}
                     <p id='postInfo'>{{ otherUserPosts }} Posts</p>
@@ -28,7 +28,9 @@
             </div>
         </div>
         <div id='downDiv'>
-            <h1 id='downDivText'>All posts by Kevin</h2>
+            {{#each otherUserProfile}}
+            <h1 id='downDivText'>All posts by {{ this.first_name }}</h2>
+            {{/each}}
             {{#each otherUserLatestPosts}}
             {{>otherUserProfilePost this}}
             {{/each}}

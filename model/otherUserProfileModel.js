@@ -54,8 +54,10 @@ function getOtherUserProfile(id) {
 
 // Get total number of post(s) with user ID
 function getOtherUserPosts(id) {
-    let posts = 3;
-    return posts;
+    let sql = `SELECT COUNT(*) AS total FROM post WHERE posterID="${id}"`;
+    return db.execute(sql).then(([Data, Metadata]) => {
+        return Data[0].total;
+    }).catch((error) => console.log(error));
 }
 
 // Get total messages of post(s) with user ID

@@ -2,7 +2,7 @@ let otherUserProfileModel = require('../model/otherUserProfileModel');
 
 exports.getOtherUserData = async (req, res, next) => {
     let userData = await otherUserProfileModel.getOtherUserProfile(req.params.id);
-    let userPosts = otherUserProfileModel.getOtherUserPosts(req.params.id);
+    let userPosts = otherUserProfileModel.getOtherUserPosts();
     console.log("asddsad",userData)
     // let userData = otherUserProfileModel.getOtherUserProfile(req.query.id);
     // let userPosts = otherUserProfileModel.getOtherUserPosts(req.query.id);
