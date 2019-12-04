@@ -3,7 +3,7 @@ let firebase = require('firebase');
 const uuidv1 = require('uuid/v1');
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey('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');
+sgMail.setApiKey('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');
 
 
 // Get messages with user ID
@@ -105,7 +105,7 @@ function sendMessage(data) {
         if (!userID) {
             reject("USER ID UNDEFINED");
         }
-        console.log("env", process.env);
+
         const msgID = uuidv1();
         let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
         let sql1 = `SELECT email FROM Users WHERE ID = "${data.receiver}";`;
@@ -115,20 +115,24 @@ function sendMessage(data) {
                 reject(err)
             }
             console.log("messageUserDATA:,", userData);
-            db.query(sql2, (err, data) => {
+            db.query(sql2, (err, sentData) => {
                 if (err) {
                     reject(err);
                 }
                 const msg = {
                     to: 'leeyongl5263@gmail.com',
-                    from: userData.ID,
+                    // from: userData[0].email,
+                    from: 'leeyongl5263@gmail.com',
                     subject: data.subject,
                     text: data.body,
+                    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+
                 };
+
                 sgMail.send(msg);
-                console.log(data);
-                data.msg_id = msgID;
-                resolve(data);
+                console.log(sentData);
+                sentData.msg_id = msgID;
+                resolve(sentData);
             })
         })
 
