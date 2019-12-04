@@ -30,7 +30,8 @@ exports.updateUser = (req, res) => {
         // console.log(userData)
     let addUser = loginmodel.addUser(userData);
     // loginmodel.addUser(userData)  
-    res.redirect("/homepage"); 
+    res.send(addUser);
+    // loginmodel.addUser(userData)   
 }
 
 exports.signInUser = async(req, res, next) => {
@@ -38,8 +39,11 @@ exports.signInUser = async(req, res, next) => {
     let signInUser = await loginmodel.signin(user);
 
     console.log("signin", signInUser);
-    res.send(JSON.stringify(signInUser));
-    return signInUser;
+    if (signInUser == false) {
+        res.status(400).send(new Error('Occurs an error'));
+    } else {
+        res.send(JSON.stringify(signInUser));
+    }
 }
 
 exports.signOutUser = (req, res, next) => {
