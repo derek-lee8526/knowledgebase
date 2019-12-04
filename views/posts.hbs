@@ -2,7 +2,7 @@
     <div id="profileContainer">
         {{#each userProfile}}
         <div class="profileImageContainer">
-            <img src='{{ this.imageURL }}' />
+            <img src='{{ this.imageurl }}' />
         </div>
         <div class="profileInfo">
             <div class="profileName">
@@ -32,7 +32,7 @@
     </div>
     <div id="allPostsContainer">
         <h1>All posts</h1>
-        {{#each latestPosts}}
+        {{#each postData}}
         {{>post this}}
         {{/each}}
     </div>

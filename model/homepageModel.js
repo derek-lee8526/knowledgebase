@@ -67,16 +67,40 @@ function getPosts(topic) {
 // Get latest posts in the database
 function getLatestPosts() {
     console.log("======= GET LATEST POST ======");
-    // return posts;
     return new Promise((resolve, reject) => {
-
-        let sql = `SELECT post.id, post.posterID, post.subject, post.topic, post.detail, post.postTime, users.imageurl FROM post INNER JOIN users ON post.posterID=users.ID ORDER BY postTime DESC`;
+        const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
+        if (!userID) {
+            reject("USER ID UNDEFINED");
+        }
+        let sql = `SELECT post.id as post_id, post.posterID AS post_posterID, post.subject AS post_subject, post.topic AS post_topic, post.detail post_detail, post.postTime post_postTime, users.imageurl users_imageURL FROM post INNER JOIN users ON post.posterID=users.ID ORDER BY postTime DESC`;
         db.query(sql, (err, data) => {
             if (err) {
                 reject(err);
             }
-            // console.log(data);
-            resolve(data);
+
+            console.log(data);
+            let result = [];
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+                "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+            ];
+            data.forEach((post, i) => {
+                console.log(new Date(post.post_postTime));
+                console.log("user:222", post);
+                let tempPost = {}
+                let tempDate = new Date(post.post_postTime);
+                let date = monthNames[tempDate.getMonth()] + " " + tempDate.getDate();
+                tempPost = {
+                        id: post.post_id,
+                        posterID: post.post_posterID,
+                        subject: post.post_subject,
+                        topic: post.post_topic,
+                        detail: post.post_detail,
+                        postTime: date,
+                        imageurl: post.users_imageURL
+                    };
+                result.push(tempPost);
+            })
+            resolve(result);
         })
     });
 }

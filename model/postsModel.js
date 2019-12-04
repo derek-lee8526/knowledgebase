@@ -1,77 +1,84 @@
 let db = require('../utils/database');
+let firebase = require('firebase');
+const userID = firebase.auth().currentUser ? firebase.auth().currentUser.uid : null;
+const uuidv1 = require('uuid/v1');
 
 // Get user profile with user ID
 function getUserProfile(id){
-    let sql = `SELECT * FROM profile where id="${id}"`;
-    let profile = [{
-        firstName: 'Sean',
-        lastName: 'Williamson',
-        imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
-        description: '10 years of work experience in tech',
-        likes: 10,
-    }]
-    return profile;
+    // console.log("========== GET PROFILE DATA ===============");
+    return new Promise((resolve, reject) => {
+        const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
+        if (!userID) {
+            reject("USER ID UNDEFINED");
+        }
+        let sql = `SELECT * FROM Users where id="${userID}"`;
+
+        db.query(sql, (err, data) => {
+            if (err) {
+                reject(err);
+            }
+            console.log(data);
+            resolve(data);
+        })
+    });
 }
 
 // Get total number of post(s) with user ID
 function getUserPosts(id){
-    let sql = `SELECT COUNT(postID) FROM post WHERE posterID="${id}"`;
-    let posts = 3;
-    return posts;
+    let sql = `SELECT COUNT(*) AS total FROM post WHERE posterID="${userID}"`;
+    return db.execute(sql).then(([Data, Metadata]) => {
+        return Data[0].total;
+    }).catch((error) => console.log(error));
 }
 
 // Get total messages of post(s) with user ID
 function getUserMessages(id){
-    let sql = `SELECT COUNT(messageID) FROM message WHERE receiver="${id}"`;
-    let messages = 5;
-    return messages;
+    let sql = `SELECT COUNT(*) AS total FROM message WHERE receiver="${userID}"`;
+    return db.execute(sql).then(([Data, Metadata]) => {
+        console.log(Data[0].total);
+        return Data[0].total;
+    }).catch((error) => console.log(error));
 }
 
 // Get latest posts by user in the database
-function getPosts(id) {
-    let sql = `SELECT * FROM post WHERE posterID="${id}" ORDER BY postTime DESC`;
-    let posts = [{
-            subject: 'Users setting deleted',
-            detail: 'Test1',
-            topic: 'nodejs',
-            postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
-            replies: 1,
-        },
-        {
-            subject: 'Users setting deleted',
-            detail: 'Test2',
-            topic: 'nodejs',
-            postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
-            replies: 2,
-        },
-        {
-            subject: 'Users setting deleted',
-            detail: 'Test3',
-            topic: 'nodejs',
-            postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
-            replies: 3,
-        },
-        {
-            subject: 'Users setting deleted',
-            detail: 'Test4',
-            topic: 'nodejs',
-            postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
-            replies: 4,
-        },
-        {
-            subject: 'Users setting deleted',
-            detail: 'Test5',
-            topic: 'nodejs',
-            postTime: 'Sept 19th',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
-            replies: 5,
-        },
-    ];
-    return posts;
+function getPosts() {
+    console.log("======= GET USER POST ======");
+    return new Promise((resolve, reject) => { 
+        const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
+        // if (!userID) {
+        //     reject("USER ID UNDEFINED");
+        // }
+        let sql = `SELECT post.id as post_id, post.posterID AS post_posterID, post.subject AS post_subject, post.topic AS post_topic, post.detail post_detail, post.postTime post_postTime, users.imageurl users_imageURL FROM post INNER JOIN users ON post.posterID=users.ID WHERE posterID = "${userID}"ORDER BY postTime DESC`;
+        db.query(sql, (err, data) => {
+            if (err) {
+                reject(err);
+            }
+
+            console.log(data);
+            let result = [];
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+                "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+            ];
+            data.forEach((post, i) => {
+                console.log(new Date(post.post_postTime));
+                console.log("user:222", post);
+                let tempPost = {}
+                let tempDate = new Date(post.post_postTime);
+                let date = monthNames[tempDate.getMonth()] + " " + tempDate.getDate();
+                tempPost = {
+                        id: post.post_id,
+                        posterID: post.post_posterID,
+                        subject: post.post_subject,
+                        topic: post.post_topic,
+                        detail: post.post_detail,
+                        postTime: date,
+                        imageurl: post.users_imageURL
+                    };
+                result.push(tempPost);
+            })
+            resolve(result);
+        })
+    });
 }
 
 // Get number of replies with post id

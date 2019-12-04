@@ -18,6 +18,9 @@
     float: left;
     padding: 10px;
 }
+a:link {
+    text-decoration: none;
+  }
 
 .profileImageContainer img {
     width: 100px;
