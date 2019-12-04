@@ -48,7 +48,8 @@ exports.signInUser = async(req, res, next) => {
 
 exports.signOutUser = (req, res, next) => {
     console.log(req.body)
-    // return loginmodel.signout();
+    res.status(200).send()
+    return loginmodel.signout();
 }
 
 exports.home = (req, res) => {
