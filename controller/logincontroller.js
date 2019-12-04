@@ -15,7 +15,6 @@ exports.createUser = (req, res, next) => {
 }
 
 exports.updateUser = (req, res) => {
-    console.log('hello')
     console.log(req.body)
     let userData = {
             fname: req.body.fname,
@@ -30,7 +29,8 @@ exports.updateUser = (req, res) => {
         // console.log(userData)
     let addUser = loginmodel.addUser(userData);
     // loginmodel.addUser(userData)  
-    res.send(addUser);
+    // res.send(addUser);
+    res.status(200).send()
     // loginmodel.addUser(userData)   
 }
 
@@ -47,7 +47,8 @@ exports.signInUser = async(req, res, next) => {
 }
 
 exports.signOutUser = (req, res, next) => {
-    return loginmodel.signout();
+    console.log(req.body)
+    // return loginmodel.signout();
 }
 
 exports.home = (req, res) => {
