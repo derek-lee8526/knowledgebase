@@ -11,7 +11,7 @@ function getSearch(topic) {
             reject("USER ID UNDEFINED");
         }
         console.log(topic);
-        let sql = `SELECT * FROM post WHERE topic LIKE "${topic}";`;
+        let sql = `SELECT * FROM post JOIN Users as getter ON posterID = getter.ID WHERE (subject LIKE "${topic}" OR detail LIKE "${topic}" OR topic LIKE "${topic}") ORDER BY postTime;`;
         db.query(sql, (err, data) => {
             if (err) {
                 reject(err);

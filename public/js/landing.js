@@ -27,12 +27,18 @@ function signInButton() {
             }
         }).then((data) => {
             console.log(data);
+            if (!data.ok) {
+                throw "ERROR";
+            }
             return data.json();
         }).then((user) => {
             console.log(user);
             return sessionStorage.setItem("user", JSON.stringify(user));
         }).then((user) => {
             window.location.href = "/homepage";
+        }).catch((err) => {
+            console.log(err);
+            alert("Check your login information...");
         })
 
     });
@@ -55,10 +61,9 @@ function createUser() {
     userData.push(userinfo)
 
     localStorage.setItem("userinfo", JSON.stringify(userData))
-    if(validatePassword()){
+    if (validatePassword()) {
         window.location.href = '/completeregistration'
-    }
-    else {
+    } else {
         $("#password").css("border", "2px solid #E34234");
         $("#confirmpassword").css("border", "2px solid #E34234");
     }
@@ -71,4 +76,4 @@ function validatePassword() {
     } else {
         return true;
     }
-  }
+}
