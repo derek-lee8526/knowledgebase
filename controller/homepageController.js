@@ -7,10 +7,13 @@ exports.getHomepageData = async(req, res, next) => {
     let userPosts = await homepageModel.getUserPosts();
     let userMessages = await homepageModel.getUserMessages();
     let latestPosts = homepageModel.getLatestPosts();
-    let postReplies = await homepageModel.getReplies(req.query.id);
+    let totalReplies = homepageModel.getTotalReplies(req.params.id);
+    let postReplies = await homepageModel.getReplies(req.params.id);
     latestPosts.then((data) => {
         //res.render('people', {people: data[0], peopleCSS: true});
-        console.log(data);
+        console.log("reply", totalReplies);
+        console.log("param id", req.params.id);
+
         res.render('homepage', { userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
     });
 }
@@ -39,9 +42,9 @@ exports.postAddPost = (req, res, next) => {
         //    imgURL: profileData.imgURL,
         //replies: homepageModel.getTotalReplies()
     }
-    console.log(pOject);
+    // console.log(pOject);
     homepageModel.addPost(pOject);
-    console.log(pOject);
+    // console.log(pOject);
     // console.log(req.body.subject);
     // console.log(req.body.topics);
     // console.log(req.body.detail);
@@ -52,21 +55,20 @@ exports.postAddPost = (req, res, next) => {
 
 // post new data to reply table
 exports.postAddReply = (req, res, next) => {
-    let profileDate = homepageModel.getUserProfile(req.query.id);
-
     let pOject = {
         comment: req.body.comment,
-        imgURL: profileDate.imgURL
     }
 
-    homepageModel.addReply(pOject);
+    let id = req.params.id;
+
+    homepageModel.addReply(id, pOject);
     res.redirect(301, '/homepage');
 }
 
 // get replies from table
 exports.getReplies = (req, res, next) => {
     //console.log(req.query.id);
-    let replyData = homepageModel.getReplies(req.query.id);
+    let replyData = homepageModel.getReplies(req.params.id);
 
     res.send(JSON.stringify(replyData));
 }

@@ -5,15 +5,6 @@ const uuidv1 = require('uuid/v1');
 
 // Get user profile with user ID
 function getUserProfile() {
-    //let sql = `SELECT * FROM profile where id="${id}"`;
-    // let profile = [{
-    //     firstName: 'Sean',
-    //     lastName: 'Williamson',
-    //     imageURL: 'https://randomuser.me/api/portraits/med/men/62.jpg',
-    //     description: '10 years of work experience in tech',
-    //     likes: 10,
-    // }]
-    //return profile;
     // console.log("========== GET PROFILE DATA ===============");
     return new Promise((resolve, reject) => {
         const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
@@ -42,7 +33,7 @@ function getUserPosts() {
 
 // Get total messages of post(s) with user ID
 function getUserMessages() {
-    let sql = `SELECT COUNT(*) AS total FROM reply WHERE posterID="${userID}"`;
+    let sql = `SELECT COUNT(*) AS total FROM message WHERE receiver="${userID}"`;
     return db.execute(sql).then(([Data, Metadata]) => {
         console.log(Data[0].total);
         return Data[0].total;
@@ -51,22 +42,17 @@ function getUserMessages() {
 
 // Add post to the database
 function addPost(data) {
-    //let sql = `INSERT INTO post (posterID, subject, detail, topic, imgURL, replies) VALUES ('${userID}', "test", "test", "test","test", 2)`;
-    //let sql = "INSERT INTO post (posterID, subject, detail, topic, imgURL, replies) VALUES ('"${userID}"','" + data.subject + "','" + data.detail + "','" + data.topic + "', 2)";
     return new Promise((resolve, reject) => {
-
         const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
         if (!userID) {
             reject("USER ID UNDEFINED");
         }
         const posterID = uuidv1();
-
-        let sql = `INSERT INTO post (id, posterID, subject, detail, topic, replies) VALUES ("${posterID}","${userID}","${data.subject}","${data.detail}","${data.topic}", 2)`;
+        let sql = `INSERT INTO post (id, posterID, subject, detail, topic) VALUES ("${posterID}","${userID}","${data.subject}","${data.detail}","${data.topic}")`;
         db.query(sql, (err, data) => {
             if (err) {
                 reject(err);
             }
-            //return db.execute(sql);
             resolve(data)
         });
     })
@@ -84,42 +70,73 @@ function getLatestPosts() {
     // return posts;
     return new Promise((resolve, reject) => {
 
-        let sql = `SELECT * FROM post ORDER BY postTime DESC`;
+        let sql = `SELECT post.id, post.posterID, post.subject, post.topic, post.detail, post.postTime, users.imageurl FROM post INNER JOIN users ON post.posterID=users.ID ORDER BY postTime DESC`;
         db.query(sql, (err, data) => {
             if (err) {
                 reject(err);
             }
-            console.log(data);
+            // console.log(data);
             resolve(data);
         })
     });
 }
 
-// Get number of replies with poster id
+// Get number of replies with post id
 function getTotalReplies(id) {
-    let sql = `SELECT COUNT(replierID) FROM reply WHERE posterID="${id}"`;
-    return db.execute(sql);
+    let sql = `SELECT COUNT(*) AS total FROM reply WHERE postID="${id}"`;
+    //let sql = `SELECT COUNT(*) AS total FROM reply JOIN post ON reply.postID = post.id WHERE postID="${id}"`;
+    return db.execute(sql).then(([Data, Metadata]) => {
+        console.log(Data);
+        return Data[0].total;
+        
+    }).catch((error) => console.log(error));
 }
 
-// Get replies with poster id
+// Get replies with post id
 function getReplies(id) {
-    let sql = `SELECT * FROM reply WHERE id="${id}"`;
-    let replies = [{
+    //let sql = `SELECT * FROM reply JOIN post ON reply.postID = post.id WHERE postID="${id}"`;
+    // let replies = [{
 
-            comment: 'comment test1',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/17.jpg',
-        },
-        {
-            comment: 'comment test2',
-            imageURL: 'https://randomuser.me/api/portraits/med/men/28.jpg',
-        },
-    ]
-    return replies;
+    //     comment: 'comment test1',
+    //     imageURL: 'https://randomuser.me/api/portraits/med/men/17.jpg',
+    // },
+    // {
+    //     comment: 'comment test2',
+    //     imageURL: 'https://randomuser.me/api/portraits/med/men/28.jpg',
+    // },
+    // ]
+    //return db.execute(sql);
+
+    console.log("======= GET LATEST POST ======");
+    // return posts;
+    return new Promise((resolve, reject) => {
+
+    let sql = `SELECT * FROM reply JOIN post ON reply.postID = post.id WHERE postID="${id}"`;
+        db.query(sql, (err, data) => {
+            if (err) {
+                reject(err);
+            }
+            // console.log(data);
+            resolve(data);
+        })
+    });
 }
 
 function addReply(id, data) {
-    let sql = "INSERT INTO reply (posterID, replierID, comment, imageURL) VALUES (1, 2, '" + data.comment + "','" + data.imageURL + "')";
-    return db.execute(sql);
+    return new Promise((resolve, reject) => {
+        const userID = (firebase.auth().currentUser) ? firebase.auth().currentUser.uid : null;
+        if (!userID) {
+            reject("USER ID UNDEFINED");
+        }
+        const replyID = uuidv1();
+        let sql = `INSERT INTO reply (id, postID, replierID, comment) VALUES ("${replyID}","${id}","${userID}","${data.comment}")`;
+        db.query(sql, (err, data) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(data)
+        });
+    })
 }
 
 module.exports = {

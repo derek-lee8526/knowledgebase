@@ -1,7 +1,7 @@
 <div class='postContainer'>
     <div class='postImageContainer'>
         <a href="../profile">
-            <img src='{{ imageURL }}' />
+            <img src='{{ imageurl }}' />
         </a>
     </div>
     <div class='postBodyContainer'>
@@ -20,7 +20,7 @@
             <div class='postTimeContainer'>
                 <tr>
                     <td><p> {{ postTime }}</p></td>
-                    <td><div onClick="getReply( {{id}} )">{{ replies }} replies</div></td>
+                    <td><div onClick="getReply( {{id}} )">{{ postReplies }} replies</div></td>
                 </tr>     
             </div>
         </table>

@@ -137,7 +137,21 @@ select {
     width: 100px;
 }
 
-.next-btn {
+#btn_next {
+    float: right;
+    margin: 5px;
+    background-color: white;
+    /* Green */
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    /* padding: 8px 32px; */
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+}
+#btn_prev {
     float: right;
     margin: 5px;
     background-color: white;
