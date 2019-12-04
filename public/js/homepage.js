@@ -190,4 +190,18 @@ function topicButtonListener() {
 window.onload = function() {
     changePage(1);
     //console.log(this.objJson);
+  var x = document.getElementById("postReplyContainer");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function signout() {
+  // let logoutbtn = document.getElementById('logout')
+  // logoutbtn.addEventListener("click", async function() {
+
+  // })
+  // window.location.href = '/'
 }
