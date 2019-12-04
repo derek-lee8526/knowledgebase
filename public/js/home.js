@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
 
     updateUser();
 }, false);
@@ -7,7 +7,7 @@ function updateUser() {
 
 
     let update = document.getElementById('completeregistration')
-    update.addEventListener("click", async function () {
+    update.addEventListener("click", async function() {
         let first_name = JSON.parse(localStorage.getItem('userinfo'))[0].fname
         let last_name = JSON.parse(localStorage.getItem('userinfo'))[0].lname
         let email = JSON.parse(localStorage.getItem('userinfo'))[0].email
@@ -35,12 +35,12 @@ function updateUser() {
             }
         }).then((data) => {
             console.log(data)
-            document.getElementById('registration').addEventListener('submit', function (e) {
+            window.location.href = '/homepage';
+            document.getElementById('registration').addEventListener('submit', function(e) {
                 e.preventDefault();
-                window.location.href = '/homepage'
                 // localStorage.clear()
             })
         })
     })
-   
+
 }

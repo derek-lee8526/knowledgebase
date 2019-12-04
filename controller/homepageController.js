@@ -1,24 +1,18 @@
 let homepageModel = require('../model/homepageModel');
 
 // get data for homepage
-exports.getHomepageData = async (req, res, next) => {
+
+exports.getHomepageData = async(req, res, next) => {
     let userData =  await homepageModel.getUserProfile();
     let userPosts = await homepageModel.getUserPosts();
     let userMessages = await homepageModel.getUserMessages();
     let latestPosts = await homepageModel.getLatestPosts();
     let postReplies = await homepageModel.getReplies(req.query.id);
-    console.log(userPosts);
-    //latestPosts.then((data) => {
-        //console.log(data);
-        res.render('homepage', { userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: latestPosts, postReplies: postReplies, homepageCSS: true })
-    // }).catch((err) => {
-    //     console.log(err);
-    //     if (err == "USER ID UNDEFINED") {
-    //         res.redirect('/')
-    //     }
-    //     alert("An error occurred. Please try again later...");
-
-    // });
+    latestPosts.then(([data, metadata]) => {
+        //res.render('people', {people: data[0], peopleCSS: true});
+        console.log(data);
+        res.render('homepage', { otherUserProfileCSS: true, userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
+    });
 }
 
 // get data for homepage with filtered topic
