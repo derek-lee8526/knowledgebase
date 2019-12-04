@@ -1,0 +1,39 @@
+<div id="postsContainer">
+    <div id="profileContainer">
+        {{#each userProfile}}
+        <div class="profileImageContainer">
+            <img src='{{ this.imageURL }}' />
+        </div>
+        <div class="profileInfo">
+            <div class="profileName">
+                <p>{{ this.firstName }} {{this.lastName}}</p>
+            </div>
+            <p>{{ this.description }}</p>
+        </div>
+        <div class="profileData">
+            <table class="profile-table">
+                <tr>
+                    <td class="profile-td">Likes:</td>
+                    <td>{{ this.likes }}</td>
+                </tr>
+                {{/each}}
+                {{!-- had to take out of loop --}}
+                <tr>
+                    <td class="profile-td"><a href="/posts">Posts:</a></td>
+                    <td>{{ userPosts }}</td>
+                </tr>
+                <tr>
+                    <td class="profile-td"><a href="/messenger">Messages:</a></td>
+                    <td>{{ userMessages }}</td>
+                </tr>
+            </table>
+        </div>
+        <a href="/editProfile">Edit Profile</a>
+    </div>
+    <div id="allPostsContainer">
+        <h1>All posts</h1>
+        {{#each latestPosts}}
+        {{>post this}}
+        {{/each}}
+    </div>
+</div>

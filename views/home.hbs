@@ -1,16 +1,13 @@
-{{>header}}
 <div id="landingPicture">
     <img src="https://i.ibb.co/vYrK55d/vector-knowledge.jpg" alt="vector-knowledge" border="0" id='landingimg'/>
 </div>
 <div id='form'>
     <p>Join the worlds largest community for knowledge sharing</p>
-    {{!-- <form method="POST" action="/createuser" id='signupForm' onsubmit="createUser(); this.reset(); return false">
-    </form> --}}
-        <input type='text' placeholder="First Name" id='fname'/>
-        <input type='text' placeholder="Last Name" id='lname'/> <br/>
-        <input type='text' placeholder="Email" class='registration' id='email'/><br/>
-        <input type='password' placeholder="Password" class='registration' id='password'/><br/>
-        <input type='password' placeholder="Confirm Password" class='registration'/> <br/>
+        <input type='text' placeholder="First Name" id='fname' required/>
+        <input type='text' placeholder="Last Name" id='lname' required/> <br/>
+        <input type='text' placeholder="Email" class='registration' id='email' required/><br/>
+        <input type='password' placeholder="Password" class='registration' id='password'required/><br/>
+        <input type='password' placeholder="Confirm Password" class='registration' id='confirmpassword'required/> <br/>
         <input type="submit" value="Sign Up" class='registration' id='submit' onclick="createUser()"/> 
 <div>
     {{!-- <div>

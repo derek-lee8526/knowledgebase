@@ -1,4 +1,4 @@
-#homeContainer {
+#postsContainer {
     background-color: white;
     width: 100%;
     height: 100%;
@@ -12,7 +12,7 @@
     text-align: center;
 }
 
-#postContainer {
+#allPostsContainer {
     background-color: white;
     width: 470px;
     float: left;
@@ -52,59 +52,6 @@
     width: 100px;
 }
 
-.form-control {
-    padding: 5px;
-}
-
-.form-subject {
-    width: 300px;
-}
-
-.form-detail {
-    height: 100px;
-    width: 300px;
-    text-align: initial;
-}
-
-.post-btn {
-    background-color: white;
-    /* Green */
-    border: 2px solid dodgerblue;
-    color: dodgerblue;
-    /* padding: 8px 32px; */
-    height: 30px;
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.searchContainer {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-select {
-    outline-color: dodgerblue;
-    border: 2px solid dodgerblue;
-    color: dodgerblue;
-    height: 30px;
-    width: 200px;
-}
-
-.go-btn {
-    background-color: dodgerblue;
-    /* Green */
-    border: 2px solid white;
-    color: white;
-    /* padding: 8px 32px; */
-    height: 30px;
-    width: 100px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
 .postContainer {
     display: flex;
     flex-direction: row;
@@ -135,21 +82,6 @@ select {
     border: 2px solid dodgerblue;
     color: dodgerblue;
     width: 100px;
-}
-
-.next-btn {
-    float: right;
-    margin: 5px;
-    background-color: white;
-    /* Green */
-    border: 2px solid dodgerblue;
-    color: dodgerblue;
-    /* padding: 8px 32px; */
-    height: 30px;
-    width: 100px;
-    text-align: center;
-    text-decoration: none;
-    /* display: inline-block; */
 }
 
 #postReplyContainer {
@@ -200,11 +132,14 @@ select {
     float: right;
 }
 
-
-/* table {
-    border: 2px solid black;
+#searchedResultContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-td {
-    border: 2px solid black;
-} */
+#searchedResultContainer>div {
+    width: 50%;
+    margin: 0 auto;
+}

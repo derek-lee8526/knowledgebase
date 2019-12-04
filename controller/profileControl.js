@@ -14,6 +14,6 @@ exports.getProfile = (req, res, next) => {
     //     passingData.push(data);
     //     res.render('messenger', { users: passingData, messengerCSS: true })
     // })
-    res.render('profile', { users: getData, messengerCSS: true })
+    res.render('profile', { users: getData, messengerCSS: true, loggedin: true })
 
 }

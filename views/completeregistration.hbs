@@ -1,19 +1,15 @@
-<div>
-<img src="https://i.ibb.co/C7C8k5f/Capture.png" alt="Capture" border="0" id="logo"/>
-</div>
+
 <div>
     <p>
         Let us know a little more about you
     </p>
 </div>
 <div id='regForm'> 
-     {{!-- onsubmit="this.submit(); this.reset(); return false" --}}
-    <form method='POST' action="/home" id='registration'>
-        <input type='text' placeholder="image url" id='img'/><br/>
-        <textarea cols="40" wrap="hard" id ='desc' class='updateForm' placeholder="Description about yourself"></textarea><br/>
-        {{!-- <input type='text' placeholder="Description about yourself" id='desc' class="updateForm"/><br/> --}}
-        <input type='text' placeholder="country" id='country'  class="updateForm"/><br/>
-        <input type='text' placeholder="date of birth (mm/dd/yyyy)" id='dob'  class="updateForm"/><br/>
-        <input type="submit" value ='complete registration' id='completeregistration' class="updateForm" onclick="updateUser()"/>
+    <form id='registration' onsubmit="return false">
+        <input type='text' placeholder="image url" id='img' required='required'/><br/>
+        <textarea cols="40" wrap="hard" id ='desc' class='updateForm' placeholder="Description about yourself" required="required"></textarea><br/>
+        <input type='text' placeholder="country" id='country'  class="updateForm" required="required"/><br/>
+        <input type='text' placeholder="date of birth (mm/dd/yyyy)" id='dob'  class="updateForm"required="required"/><br/>
+        <input type="submit" value ='complete registration' id='completeregistration' class="updateForm"/>
     </form>
 </div>

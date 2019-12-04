@@ -20,20 +20,30 @@
         <link href='/css/sendMessage.css' rel='stylesheet' />
     {{/if}}
 
-     {{#if homepageCSS}}
+    {{#if homepageCSS}}
         <link href='/css/homepage.css' rel='stylesheet' />
     {{/if}}
-
+    {{#if postsCSS}}
+        <link href='/css/posts.css' rel='stylesheet' />
+    {{/if}}
     {{#if otherUserProfileCSS}}
-        <link href='/css/otherUserProfile.css' rel='stylesheet' />
+    <link href='/css/otherUserProfile.css' rel='stylesheet' />
+    {{/if}}
+    {{#if editProfileCSS}}
+        <link href='/css/editProfile.css' rel='stylesheet' />
     {{/if}}
     <script src='/js/landing.js'></script>
     <script src='/js/messenger.js'></script>
     <script src='/js/homepage.js'></script>
+    <link href='/css/header.css' rel='stylesheet' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src='/js/posts.js'></script>
+    <script src='/js/search.js'></script>
 
     
 </head>
 <body>
+    {{> header}} 
     {{{ body }}}
 </body>
 </html>

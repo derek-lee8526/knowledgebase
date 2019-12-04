@@ -2,7 +2,7 @@
 <div id="sendMessagePage">
     <div id="sendMessageContainer">
         <div id="sendMessageImgContainer">
-            <img id="sendMessageImg" src="{{receiver.imageURL}}" />
+            <img id="sendMessageImg" src="{{receiver.imageurl}}" />
         </div>
         <div>
             <div>
@@ -11,7 +11,7 @@
             <div id="sendMessageDetailContainer">
                 
                 <textarea id="sendMessagePageTextArea" placeholder="message details..."></textarea>
-                <button id="sendMessagePageButton" onclick="sendMessage({{receiver.id}})"> Message </button>
+                <button id="sendMessagePageButton" onclick='sendMessage("{{receiver.ID}}")'> Message </button>
             </div>
         </div>
     </div>

@@ -1,23 +1,21 @@
 .login {
     font-family: 'Overlock', cursive;
-    float:right;
-    margin: 2% 1% 0 0 ;
-
+    margin: 2px;
+    height: 3vh;
+    width: 15vh;
+    font-size: 15px;
 }
 
 #logo {
     height: 7%;
     margin: none;
-
 }
 
 #loginSubmit {
     background: #81ccfe;
     color: white;
     border: none;
-    width: 7%;
-    padding: 5px;
-    margin-top: 33px;
+    width: 7vw;
 }
 
 #landingPicture {
@@ -40,7 +38,7 @@ input::placeholder {
     float: right;
 }
 
-div > p {
+div>p {
     font-size: 26pt;
     width: 50%;
     margin: 15% auto 4%;
@@ -51,7 +49,7 @@ div > p {
 }
 
 #fname {
-    margin-right:4%;
+    margin-right: 4%;
     margin-left: 25%;
     width: 24%;
 }

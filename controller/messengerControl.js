@@ -2,40 +2,72 @@ let messengereModel = require('../model/messengerModel');
 
 
 exports.getUserList = (req, res, next) => {
+    console.log("============= GET USER LIST =================");
     let getData = messengereModel.getUserList();
-    console.log(getData);
-    // getData.then(([data, metaData]) => {
-    //     res.render('messengerUsers', { data: data, messengerCSS: true })
-    // })
 
-    // getData.forEach((data) => {
-    //     console.log(data);
-    //     let passingData = [];
-    //     passingData.push(data);
-    //     res.render('messenger', { users: passingData, messengerCSS: true })
-    // })
-    res.render('messenger', { users: getData, messengerCSS: true })
+    getData.then((data) => {
+        console.log("users: ", data);
+        res.render('messenger', { users: data, messengerCSS: true, loggedin: true });
+    }).catch((err) => {
+        console.log(err);
+        if (err == "USER ID UNDEFINED") {
+            res.redirect('/')
+        }
+        alert("An error occurred. Please try again later...");
+
+    });
+
 
 }
 
 exports.getMessages = (req, res, next) => {
-    console.log(req.query.id);
-    let msgData = messengereModel.getMessage(req.query.id);
+    console.log("================= GET MESSAGE ================");
+    console.log("body:", req.params.id);
+    let msgData = messengereModel.getMessage(req.params.id);
 
-    res.send(JSON.stringify(msgData));
+    msgData.then((data) => {
+        console.log("data:", data);
+        res.send(data);
+    }).catch((err) => {
+        if (err == "USER ID UNDEFINED") {
+            res.redirect('/')
+        }
+        alert("An error occurred. Please try again later...");
+    });
 }
 
 
 exports.sendMessage = (req, res, next) => {
-    console.log(req.query.data);
-    let data = req.query.data;
+    console.log("========= SEND MESSAGE ==========");
+    let data = req.body;
+    console.log("body: ", data);
     let msgData = messengereModel.sendMessage(data);
-    console.log(msgData);
+    msgData.then((data) => {
+        console.log("data:", data);
+        res.send(data);
+    }).catch((err) => {
+        if (err == "USER ID UNDEFINED") {
+            res.redirect('/')
+        }
+        alert("An error occurred. Please try again later...");
+    });
 }
 
+exports.sendMessageFromPage = (req, res, next) => {
+    let receiverData = messengereModel.sendMessagePageData(req.query.id, req.body);
+
+}
 exports.sendMessagePage = (req, res, next) => {
+    console.log("queryid:", req.params.id);
+    let receiverData = messengereModel.sendMessagePageData(req.params.id);
+    console.log(receiverData);
+    receiverData.then((data) => {
+        res.render("sendMessage", { receiver: data, sendMessageCSS: true, loggedin: true })
+    }).catch((err) => {
+        if (err == "USER ID UNDEFINED") {
+            res.redirect('/')
+        }
+        alert("An error occurred. Please try again later...");
+    });
 
-    let receiverData = messengereModel.sendMessagePageData(req.query.id);
-
-    res.render("sendMessage", { receiver: receiverData, sendMessageCSS: true })
 }

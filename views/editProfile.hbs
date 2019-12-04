@@ -1,0 +1,69 @@
+<div id="editProfileContainer">
+    <div id="profileContainer">
+        {{#each userProfile}}
+        <div class="profileImageContainer">
+            <img src='{{ this.imageURL }}' />
+        </div>
+        <div class="profileInfo">
+            <div class="profileName">
+                <p>{{ this.firstName }} {{this.lastName}}</p>
+            </div>
+            <p>{{ this.description }}</p>
+        </div>
+        <div class="profileData">
+            <table class="profile-table">
+                <tr>
+                    <td class="profile-td">Likes:</td>
+                    <td>{{ this.likes }}</td>
+                </tr>
+                {{/each}}
+                {{!-- had to take out of loop --}}
+                <tr>
+                    <td class="profile-td"><a href="/posts">Posts:</a></td>
+                    <td>{{ userPosts }}</td>
+                </tr>
+                <tr>
+                    <td class="profile-td"><a href="/messenger">Messages:</a></td>
+                    <td>{{ userMessages }}</td>
+                </tr>
+            </table>
+        </div>
+        <a href="/editProfile">Edit Profile</a>
+    </div>
+    <div id="editContainer">
+        <h1>Edit your profile</h1>
+        <div class="editFormContainer">
+            {{#each userProfile}}
+                <form class="editForm" action="/editProfile/update" method="POST">
+                    <div class="form-control">
+                        <label for="fname">First Name</label>
+                        <input type="text" class="form-text" name="fname" id="fname" default={{this.firstName}} value={{this.firstName}} >
+                    </div>
+                    <div class="form-control">
+                        <label for="lname">Last Name</label>
+                        <input type="text" class="form-text" name="lname" id="lname" default={{this.lastName}} value={{this.lastName}} >
+                    </div>
+                    <div class="form-control">
+                        <label for="img">Image URL</label>
+                        <input type="text" class="form-text" name="img" id="img" default={{this.imageURL}} value={{this.imageURL}} >
+                    </div>
+                    <div class="form-control">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-text" name="country" id="country" default={{this.country}} value={{this.country}} >
+                    </div>
+                    <div class="form-control">
+                        <label for="dob">Date of Birth</label>
+                        <input type="text" class="form-text" name="dob" id="dob" default={{this.dateOfBirth}} value={{this.dateOfBirth}} >
+                    </div>
+                    <div class="form-control">
+                        <label for="desc">About</label>
+                        <input type="text" class="form-text" name="desc" id="desc" default={{this.about}} value={{this.about}} >
+                    </div>
+                    <div class="form-control">
+                        <button class="update-btn" type="submit">update</button>
+                    </div>
+                </form>
+            {{/each}}
+        </div>
+    </div>
+</div>

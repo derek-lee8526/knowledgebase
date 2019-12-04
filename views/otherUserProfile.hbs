@@ -4,10 +4,10 @@
                 <div id='upLeftInfoDiv'>
                     {{#each otherUserProfile}}
                     <div id='userTopImgContainer'>
-                        <img id='topImg' src= '{{ this.imageURL }}' />
+                        <img id='topImg' src= '{{ this.imageurl }}' />
                     </div>
                     <div class='textContainer'>
-                        <p id='userName'> {{ this.firstName }} {{this.lastName}} </p>
+                        <p id='userName'> {{ this.first_name }} {{this.last_name}} </p>
                         <p id='uesrDesc'> {{ this.description }} </p>
                         <p id='country'> {{ this.country }} </p>
                     </div>
@@ -16,11 +16,11 @@
             </div>
             <div id='upRightDiv'>
                 <div id='upRightInfoDiv'>
-                    <button id='messageBtn'>Message</button>
+                    <button id='messageBtn'><a href='/sendMessage/{{ ID }}'>Message</a></button>
                     {{#each otherUserProfile}}
                     <div id='likePlus'>
                         <p id='likeNum'>{{ this.likes }} Likes</p>
-                        <button id='likePlusBtn'>+</button>
+                        <button id='likePlusBtn'> + </button>
                     </div>
                     {{/each}}
                     <p id='postInfo'>{{ otherUserPosts }} Posts</p>
@@ -28,7 +28,9 @@
             </div>
         </div>
         <div id='downDiv'>
-            <h1 id='downDivText'>All posts by Kevin</h2>
+            {{#each otherUserProfile}}
+            <h1 id='downDivText'>All posts by {{ this.first_name }}</h2>
+            {{/each}}
             {{#each otherUserLatestPosts}}
             {{>otherUserProfilePost this}}
             {{/each}}

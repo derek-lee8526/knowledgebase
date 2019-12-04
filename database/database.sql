@@ -11,5 +11,7 @@ CREATE TABLE IF NOT EXISTS Users (
     `description` VARCHAR(255),
     `country` VARCHAR(255),
     `dateofbirth` VARCHAR(255),
+    `likes` INT,
     PRIMARY KEY(`ID`)
 );
+

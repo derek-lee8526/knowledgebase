@@ -1,8 +1,29 @@
-<div>
 
-<img src="https://i.ibb.co/C7C8k5f/Capture.png" alt="Capture" border="0" id="logo"/>
+{{#if loggedin}}
+        
 
-<input type='submit' value='login' class="login" id='loginSubmit'/>
-<input type='password' placeholder='password' id='loginPassword' class='login'/>
-<input type='text' placeholder='email' id='loginEmail' class='login' />
+<div id="loggedInHeader">
+    <a href="/homepage">
+        <img src="https://i.ibb.co/TqPG25L/Capture.png" alt="Capture" border="0">
+    </a>
+
+    
 </div>
+<div id="searchBar">
+    <input type="text" placeholder="Search" id="searchInput"/>
+    <button id='logout'>Logout</button>
+
+</div>
+
+{{else}}
+<div id="headerContainer">
+
+    <img src="https://i.ibb.co/C7C8k5f/Capture.png" alt="Capture" border="0" id="logo"/>
+    <div id="loginInputContainer">
+        <input type='text' placeholder='email' id='loginEmail' class='login' />
+        <input type='password' placeholder='password' id='loginPassword' class='login'/>
+        <input type='submit' value='login' class="login" id='loginSubmit'/>
+    </div>
+
+</div>
+{{/if}}

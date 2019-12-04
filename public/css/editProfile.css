@@ -1,0 +1,78 @@
+#editProfileContainer {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+#profileContainer {
+    background-color: white;
+    width: 30%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#editContainer {
+    background-color: white;
+    width: 70%;
+    float: left;
+    padding: 10px;
+}
+
+.profileImageContainer img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 2px white solid;
+    margin: 20px;
+    margin-top: 100px;
+}
+
+.profileName {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.profileInfo{
+    margin: 5px;
+}
+
+.profileData{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 5px;
+}
+
+.profile-table {
+    margin: auto;
+}
+.profile-td {
+    text-align: left;
+    width: 100px;
+}
+
+.editFormContainer {
+    width: 470px;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+.update-btn {
+    background-color: dodgerblue; 
+    border: 2px solid white;
+    color: white;
+    /* padding: 8px 32px; */
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+}

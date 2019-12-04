@@ -10,17 +10,23 @@
     border-right: 1px solid lightgray;
 }
 
-#messageContainer {}
+#messageContainer {
+    height: 80vh;
+    overflow: scroll;
+}
 
 #messageBiggerContainer {
     background-color: white;
     width: 70%;
+    height: 100%;
     float: right;
 }
 
 #sendContainer {
-    position: absolute;
+    height: 20vh;
+    position: fixed;
     bottom: 0;
+    margin-bottom: 5px;
 }
 
 .message {}
@@ -47,8 +53,8 @@
     width: 50%;
 }
 
-.textContainer {
-    width: 40%;
+.textContainer span {
+    font-weight: bold;
 }
 
 p {
@@ -59,6 +65,7 @@ p {
 .rightUserContainer {
     float: right;
     width: 20%;
+    color: gray;
 }
 
 .usersContainer {
@@ -67,6 +74,7 @@ p {
     width: 100%;
     padding: 10px;
     border-bottom: 1px lightgray solid;
+    align-items: center;
 }
 
 .usersContainer:hover,
@@ -148,4 +156,26 @@ p {
     height: 35px;
     font-size: 20px;
     margin-right: 20px;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: lightgray;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid lightgray;
+}
+
+.separator::before {
+    margin-right: .25em;
+}
+
+.separator::after {
+    margin-left: .25em;
 }
