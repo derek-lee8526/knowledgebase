@@ -1,9 +1,9 @@
 let db = require('../utils/database');
 let firebase = require('firebase');
 const uuidv1 = require('uuid/v1');
-const sgMail = require('@sendgrid/mail');
-
-sgMail.setApiKey('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');
+const mailgun = require("mailgun-js");
+const DOMAIN = "sandboxe9b337b132314e3b8544f06c2181bae0.mailgun.org";
+const mg = mailgun({ apiKey: "f52756134bc43a18b77a0506833cee7d-f7910792-eec12e5b", domain: DOMAIN });
 
 
 // Get messages with user ID
@@ -105,30 +105,34 @@ function sendMessage(data) {
         if (!userID) {
             reject("USER ID UNDEFINED");
         }
-        console.log("env", process.env);
+
         const msgID = uuidv1();
         let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        let sql1 = `SELECT email FROM Users WHERE ID = "${data.receiver}";`;
+        let sql1 = `SELECT email, ID FROM Users WHERE ID = "${data.receiver}" OR ID = "${userID}";`;
         let sql2 = `INSERT INTO message (id, sender, receiver, body, messageTime) VALUES ("${msgID}","${userID}", "${data.receiver}", "${data.body}","${date}");`;
         db.query(sql1, (err, userData) => {
             if (err) {
                 reject(err)
             }
             console.log("messageUserDATA:,", userData);
-            db.query(sql2, (err, data) => {
+            db.query(sql2, (err, sentData) => {
                 if (err) {
                     reject(err);
                 }
+
+                let msgBody = "You have a message from " + userData.filter((user) => { return user.ID == userID })[0].email + ": \n\n" + data.body;
                 const msg = {
-                    to: 'leeyongl5263@gmail.com',
-                    from: userData.ID,
+                    from: "Mailgun Sandbox <postmaster@sandboxe9b337b132314e3b8544f06c2181bae0.mailgun.org>",
+                    to: userData.filter((user) => { return user.ID != userID })[0].email,
                     subject: data.subject,
-                    text: data.body,
+                    text: msgBody
                 };
-                sgMail.send(msg);
-                console.log(data);
-                data.msg_id = msgID;
-                resolve(data);
+                mg.messages().send(msg, function(error, body) {
+                    console.log(body);
+                });
+                console.log(sentData);
+                sentData.msg_id = msgID;
+                resolve(sentData);
             })
         })
 
