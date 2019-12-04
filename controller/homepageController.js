@@ -10,7 +10,7 @@ exports.getHomepageData = (req, res, next) => {
     latestPosts.then(([data, metadata]) => {
         //res.render('people', {people: data[0], peopleCSS: true});
         console.log(data);
-        res.render('homepage', { userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
+        res.render('homepage', { otherUserProfileCSS: true, userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
     });
 }
 
