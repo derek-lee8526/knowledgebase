@@ -199,18 +199,9 @@ window.onload = function() {
 }
 
 function signout() {
-    console.log("btn")
-    let logoutbtn = document.getElementById('logout')
-    logoutbtn.addEventListener("click", async function() {
-        const response = await fetch('/signOutUser', {
-            method: 'GET',
-        }).then((data) => {
-            if(data.status === 200) {
-                window.location.href = "/"
-            }
-        }).catch((err) => {
-            console.log(err)
-            console.log("error occured")
-        })
-    })
+  // let logoutbtn = document.getElementById('logout')
+  // logoutbtn.addEventListener("click", async function() {
+
+  // })
+  // window.location.href = '/'
 }

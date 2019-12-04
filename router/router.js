@@ -21,7 +21,7 @@ router.get('/home', loginController.home)
 router.post('/createuser', loginController.createUser)
     // router.get('/home', loginController.home);
 router.post('/signInUser', loginController.signInUser)
-router.get('/signOutUser', loginController.signOutUser)
+router.post('/signOutUser', loginController.signOutUser)
 router.post('/home', loginController.updateUser)
 
 router.get('/homepage', homepageController.getHomepageData)
