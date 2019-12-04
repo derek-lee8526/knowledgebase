@@ -4,10 +4,10 @@
                 <div id='upLeftInfoDiv'>
                     {{#each otherUserProfile}}
                     <div id='userTopImgContainer'>
-                        <img id='topImg' src= '{{ this.imageURL }}' />
+                        <img id='topImg' src= '{{ this.imageurl }}' />
                     </div>
                     <div class='textContainer'>
-                        <p id='userName'> {{ this.firstName }} {{this.lastName}} </p>
+                        <p id='userName'> {{ this.first_name }} {{this.last_name}} </p>
                         <p id='uesrDesc'> {{ this.description }} </p>
                         <p id='country'> {{ this.country }} </p>
                     </div>
@@ -16,7 +16,7 @@
             </div>
             <div id='upRightDiv'>
                 <div id='upRightInfoDiv'>
-                    <button id='messageBtn'><a href='/sendMessage/{{ userID }}'>Message</a></button>
+                    <button id='messageBtn'><a href='/sendMessage/{{ ID }}'>Message</a></button>
                     {{#each otherUserProfile}}
                     <div id='likePlus'>
                         <p id='likeNum'>{{ this.likes }} Likes</p>

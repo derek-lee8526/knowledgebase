@@ -1,15 +1,18 @@
 let otherUserProfileModel = require('../model/otherUserProfileModel');
 
-exports.getOtherUserData = (req, res, next) => {
-    let userData = otherUserProfileModel.getOtherUserProfile(req.query.id);
-    let userPosts = otherUserProfileModel.getOtherUserPosts(req.query.id);
+exports.getOtherUserData = async (req, res, next) => {
+    let userData = await otherUserProfileModel.getOtherUserProfile(req.params.id);
+    let userPosts = otherUserProfileModel.getOtherUserPosts(req.params.id);
+    console.log("asddsad",userData)
+    // let userData = otherUserProfileModel.getOtherUserProfile(req.query.id);
+    // let userPosts = otherUserProfileModel.getOtherUserPosts(req.query.id);
     // let userMessages = homepageModel.getUserMessages(req.query.id);
     let postData = otherUserProfileModel.getOtherUserLatestPosts();
-    let postReplies = otherUserProfileModel.getOtherUserReplies(req.query.id);
+    let postReplies = otherUserProfileModel.getOtherUserReplies(req.params.id);
     console.log(userPosts)
         // res.render('homepage', {userProfile: userData, userPosts: userPosts, userMessages: userMessages, latestPosts: postData, postReplies: postReplies, homepageCSS: true})
         //i need to change 'homepage'.
-    res.render('otherUserProfile', { loggedin: true, userID: userData[0].ID, otherUserProfile: userData, otherUserPosts: userPosts, otherUserLatestPosts: postData, otheruserPostReplies: postReplies, otherUserProfileCSS: true })
+    res.render('otherUserProfile', { loggedin: true, userID: userData.ID, otherUserProfile: userData, otherUserPosts: userPosts, otherUserLatestPosts: postData, otheruserPostReplies: postReplies, otherUserProfileCSS: true })
 }
 
 // exports.postAddPost = (req,res,next) => {
@@ -47,4 +50,20 @@ exports.getOtherUserReplies = (req, res, next) => {
     let replyData = otherUserProfileModel.getOtherUserReplies(req.query.id);
 
     res.send(JSON.stringify(replyData));
+}
+
+exports.otherSendMessagePage = (req, res, next) => {
+    console.log("queryid:", req.params.id);
+    let receiverData = otherUserProfileModel.otherSendMessagePageData(req.params.id);
+    console.log("lets see the receiverdata");
+    console.log(receiverData);
+    // receiverData.then((data) => {
+    //     res.render("sendMessage", { receiver: data, sendMessageCSS: true, loggedin: true })
+    // }).catch((err) => {
+    //     if (err == "USER ID UNDEFINED") {
+    //         res.redirect('/')
+    //     }
+    //     alert("An error occurred. Please try again later...");
+    // });
+
 }

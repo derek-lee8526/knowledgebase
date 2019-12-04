@@ -34,7 +34,6 @@ exports.getMessages = (req, res, next) => {
         }
         alert("An error occurred. Please try again later...");
     });
-
 }
 
 

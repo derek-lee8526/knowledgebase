@@ -32,11 +32,13 @@ router.get('/getReply/:id', homepageController.getReplies)
 router.get('/getPosts/', homepageController.getPosts)
 
 
-router.get('/otherUserProfile', otherUserProfileController.getOtherUserData)
+router.get('/otherUserProfile/:id', otherUserProfileController.getOtherUserData)
     // router.post('/homepage', otherUserProfileController.postAddPost)
     // router.post('/homepage', otherUserProfileController.postAddReply)
     //i need to change this.
 router.get('/getReply/:id', otherUserProfileController.getOtherUserReplies)
+router.get('/otherSendMessage/:id', otherUserProfileController.otherSendMessagePage)
+
 
 
 router.get('/posts', postsController.getPostsData)

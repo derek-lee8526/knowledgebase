@@ -28,11 +28,9 @@ exports.getFilteredHomepageData = (req, res, next) => {
     let userMessages = homepageModel.getUserMessages();
     let filteredPosts = homepageModel.getPosts();
     let postReplies = homepageModel.getReplies(req.query.id);
-    console.log(req.body.topics)
-    filteredPosts.then(([data, metadata]) => {
-        console.log(data);
-        res.render('homepage', { userProfile: userData, loggedin: true, userPosts: userPosts, userMessages: userMessages, postData: data, postReplies: postReplies, homepageCSS: true })
-    });
+    console.log("userData,homeage: ", userData[0].ID)
+    console.log("sadf", postData)
+    res.render('homepage', { loggedin: true, userID: userData[0].ID, userProfile: userData, userPosts: userPosts, userMessages: userMessages, latestPosts: postData, postReplies: postReplies, homepageCSS: true })
 }
 
 // post new data to post table

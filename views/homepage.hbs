@@ -2,7 +2,9 @@
     <div id="profileContainer">
         {{#each userProfile}}
         <div class="profileImageContainer">
+            <a href="/otherUserProfile/{{ this.ID}}">
             <img src='{{ this.imageurl }}' />
+            </a>
         </div>
         <div class="profileInfo">
             <div class="profileName">
