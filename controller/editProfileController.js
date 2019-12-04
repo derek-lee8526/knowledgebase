@@ -6,7 +6,7 @@ exports.getEditProfileData = (req, res, next) => {
     let userPosts = editProfileModel.getUserPosts(req.query.id);
     let userMessages = editProfileModel.getUserMessages(req.query.id);
     console.log(userPosts)
-    res.render('editProfile', {userProfile: userData, userPosts: userPosts, userMessages: userMessages, editProfileCSS: true})
+    res.render('editProfile', {userProfile: userData, userPosts: userPosts, userMessages: userMessages, editProfileCSS: true, loggedin: true})
 }
 
 // update profile in database
